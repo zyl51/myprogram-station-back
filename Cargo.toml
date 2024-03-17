@@ -1,0 +1,16 @@
+[package]
+name = "myprogram-station-rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-cors = "0.7.0"
+actix-files = "0.6.5"
+actix-rt = "2.9.0"
+actix-web = { version = "4.5.1", features = ["openssl"] }
+openssl = "0.10.63"
+reqwest = "0.11.24"
+serde =  { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.114"
