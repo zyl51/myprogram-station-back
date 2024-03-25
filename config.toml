@@ -1,0 +1,21 @@
+[server]
+host = "localhost"
+port = 8082
+pool_numbers = 15
+
+
+[mysql]
+host = "localhost"
+port = 3306
+username = "zyl"
+password = "password"
+db_name = "program_station"  # 数据库名称
+
+[redis]
+protocol = "redis"
+host = "localhost"
+port = 6379
+username = ""
+password = ""
+session_key = "runner"
+max_age = 2592000  # 单位s，session过期时间，默认30天

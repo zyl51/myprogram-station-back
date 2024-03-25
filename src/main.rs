@@ -4,9 +4,18 @@ use actix_web::{web, App, HttpResponse, HttpServer};
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 
 mod api;
+mod database;
 
-use api::follow::{get_follow_post_total_numbers, get_follow_posts_list};
-use api::recommend::{get_cover, get_recommend_post_total_numbers, get_recommend_posts_list};
+// use database::mysql::*;
+
+use api::{
+    follow::*,
+    post::*,
+    recommend::*,
+    user::*,
+};
+
+const IP_PORT: &str = "127.0.0.1:8082";
 
 async fn index() -> HttpResponse {
     HttpResponse::Ok()
@@ -16,10 +25,9 @@ async fn index() -> HttpResponse {
         ))
 }
 
-const IP_PORT: &str = "127.0.0.1:8082";
-
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
+    // solve();
     /*
     req: 表示执行证书请求操作。
     -x509: 表示生成自签名的 X.509 证书。
@@ -53,9 +61,12 @@ pub async fn main() -> std::io::Result<()> {
                 web::scope("/api")
                     .service(get_recommend_post_total_numbers)
                     .service(get_recommend_posts_list)
-                    .service(get_cover)
                     .service(get_follow_posts_list)
-                    .service(get_follow_post_total_numbers),
+                    .service(get_follow_post_total_numbers)
+                    .service(get_cover)
+                    .service(get_post)
+                    .service(get_avatar)
+                    .service(get_user),
             )
             .wrap(Cors::default().allow_any_origin()) // 添加这一行，允许跨域请求
             .service(
