@@ -1,154 +1,188 @@
 use lazy_static::lazy_static;
-use std::sync::Mutex;
 use r2d2::Pool;
 use r2d2_mysql::{
-    mysql::OptsBuilder, MySqlConnectionManager,
+    // 导入数据库配置，
+    mysql::{prelude::*, AccessMode, IsolationLevel, OptsBuilder, TxOpts},
+    MySqlConnectionManager,
 };
+use serde::{Deserialize, Serialize};
+use std::sync::{Arc, Mutex};
 
+use crate::common::config::*;
+
+// 返回帖子的结构体
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Post {
+    pub id: u32,
+    pub title: String,
+    pub release_time: String,
+    pub cover_url: String,
+    pub content: String,
+    pub user_id: u32,
+    pub user_name: String,
+}
 pub struct MysqlPool {
-    pool: Pool<MySqlConnectionManager>,
+    pool: Arc<Mutex<Pool<MySqlConnectionManager>>>,
+    pub read_only_txopts: TxOpts,
+    pub read_write_txopts: TxOpts,
 }
 
 impl MysqlPool {
     fn new() -> Self {
         // Mysql 的连接配置
+        let mysql = &Config::instance().mysql;
         let opts = OptsBuilder::new()
-            .ip_or_hostname(Some("localhost"))
-            .user(Some("zyl"))
-            .pass(Some("password"))
-            .db_name(Some("program_station"));
+            .ip_or_hostname(Some(mysql.host.as_str()))
+            .user(Some(mysql.username.as_str()))
+            .pass(Some(mysql.password.as_str()))
+            .db_name(Some(mysql.db_name.as_str()));
 
         // 创建 Mysql 连接管理器
         let manager = MySqlConnectionManager::new(opts);
 
         // 创建数据库连接池 max_size 为连接池的最大数量
-        let pool = Pool::builder().max_size(15).build(manager).unwrap();
+        let pool = Pool::builder()
+            .max_size(15)
+            .build(manager)
+            .expect("Failed Pool::builder");
 
-        MysqlPool { pool }
-    }
+        let read_only_txopts = TxOpts::default()
+            .set_with_consistent_snapshot(true) // 开启事务快照
+            .set_isolation_level(Some(IsolationLevel::RepeatableRead)) // 设置事务的隔离级别
+            .set_access_mode(Some(AccessMode::ReadOnly)); // 只允许可读
 
-    pub fn instance() -> &'static Mutex<Self> {
-         lazy_static! {
-            static ref INSTANCE: Mutex<MysqlPool> = Mutex::new(MysqlPool::new());
-         }
-         &INSTANCE
-    }
+        let read_write_txopts = TxOpts::default()
+            .set_with_consistent_snapshot(true) // 开启事务快照
+            .set_isolation_level(Some(IsolationLevel::RepeatableRead)) // 设置事务的隔离级别
+            .set_access_mode(Some(AccessMode::ReadWrite)); // 允许读写
 
-    pub fn get_connection(&self) -> Result<r2d2::PooledConnection<MySqlConnectionManager>, r2d2::Error> {
-        // let instance_lock = MysqlPool::instance().lock().expect("Failed get mysql pool");
-        // let connection = instance_lock.pool.get()?;
-        // drop(instance_lock); // 释放锁
-        // Ok(connection)
-        self.pool.get()
-    }
-
-    
-}
-
-// cargo test -- --nocapture
-#[cfg(test)]
-mod mysql_tests {
-    use super::*;
-    use r2d2_mysql::mysql::{
-        prelude::Queryable,
-        TxOpts, IsolationLevel, AccessMode
-    };
-
-
-    // 映射到结构体中
-    #[test]
-    fn test_connection_quert_map() {
-        // 获取数据库连接池实例
-        let pool = MysqlPool::instance().lock()
-            .expect("Failed to acquire lock");
-        
-        // 获取数据库连接
-        let mut connection = pool.get_connection()
-            .expect("Failed to get connection");
-        drop(pool); // 释放锁
-
-        // 执行 SQL 查询操作
-        #[allow(dead_code)]
-        #[derive(Debug)]
-        struct Post {
-            id: usize,
-            title: String,
-            release_time: String,
-            cover_url: String,
-            content_url: String,
-            user_id: usize,
-            user_name: String,
+        MysqlPool {
+            pool: Arc::new(Mutex::new(pool)),
+            read_only_txopts,
+            read_write_txopts,
         }
-        let posts: Vec<Post> = connection.query_map(
-            "SELECT * FROM post",
-            |(id, title, release_time, cover_url, content_url, user_id, user_name)| {
-                Post { id, title, release_time, cover_url, content_url, user_id, user_name }
-            },
-        ).unwrap();
-
-        for post in posts {
-            println!("query_map post: {:?}", post);
-        }
-        
-        assert!(true);
     }
 
-    // 查询分组
-    #[test]
-    fn test_connection_exec() {
-        // println!("test_connection_exec");
-        let pool = MysqlPool::instance().lock()
-            .expect("Failed to acquire lock");
-        let mut connection = pool.get_connection()
-            .expect("Failed to get connection");
-        
-        // 释放锁
-        drop(pool);
-        
-        let query = "SELECT title FROM post";
-        let result: Vec<(String,)> = connection.exec(query, ())
-            .expect("connection exec");
-
-        // println!("error");
-        for res in result {
-            println!("exec res:{:?}", res.0);
+    // 获取数据库连接池实例
+    pub fn instance() -> &'static Self {
+        lazy_static! {
+            static ref MYSQLPOOL: MysqlPool = MysqlPool::new();
         }
-        assert!(true);
+        &MYSQLPOOL
     }
 
-    // 使用 Mysql 事务代码
-    #[test]
-    fn test_transaction() {
-        let pool = MysqlPool::instance().lock()
-            .expect("Failed to acquire lock");
-        
-        let mut connection = pool.get_connection()
-            .expect("Failed to get connection");
+    // 获取数据库连接
+    pub fn get_connection(
+        &self,
+    ) -> Result<r2d2::PooledConnection<MySqlConnectionManager>, Box<dyn std::error::Error + '_>> {
+        let pool = self.pool.lock()?;
+        // 将 r2d2::Error 类型的错误转换为 Box<dyn std::error::Error> 类型的错误
+        pool.get().map_err(move |err| err.into())
+    }
 
-        drop(pool);
-        // 创建事务的的配置
-        let opts = TxOpts::default()
-            .set_with_consistent_snapshot(true)
-            .set_isolation_level(Some(IsolationLevel::RepeatableRead))
-            .set_access_mode(Some(AccessMode::ReadOnly));
-        println!("{:?}", opts);
+    // 封装数据库的 exec 方法
+    pub fn exec<T, S>(
+        &self,
+        query: S,        // 查询语句
+        txopts: &TxOpts, // 只读 或 读写
+    ) -> Result<Vec<T>, Box<dyn std::error::Error + '_>>
+    where
+        S: AsStatement + std::fmt::Debug,
+        T: FromRow,
+    {
+        // 获取连接
+        let mut connection = self.get_connection()?;
 
-        // 开启 Mysql 事务
-        let mut transaction = connection.start_transaction(opts)
-            .expect("Failed satrt_transaction");
+        // 开启事务， 只允许读操作
+        let mut transaction = connection.start_transaction(*txopts)?;
 
-        // 使用事务进行数据的读取
-        let query = "SELECT id, title FROM post";
-        let result: Vec<(u32, String,)> = transaction.exec(query, ())
-            .expect("connection exec");
+        println!("{:?}", query);
 
-        for res in result {
-            println!("{}, {}", res.0, res.1);
+        // 匹配正确和错误
+        match transaction.exec(query, ()) {
+            Ok(result) => {
+                // 提交事务
+                transaction.commit()?;
+                return Ok(result);
+            }
+            Err(err) => {
+                // 这里好像回滚和不回滚都是一样的
+                transaction.rollback()?;
+                return Err(Box::new(err));
+            }
         }
+    }
 
-        // 提交事务
-        transaction.commit().unwrap();
-        // 回滚事务
-        // transaction.rollback().unwrap();
+    // 封装数据库的 query_map 方法
+    pub fn query_map<T, F, Q, U>(
+        &self,
+        query: Q,
+        f: F,
+        txopts: &TxOpts,
+    ) -> Result<Vec<U>, Box<dyn std::error::Error + '_>>
+    where
+        Q: AsRef<str>,
+        T: FromRow,
+        F: FnMut(T) -> U,
+    {
+        // 获取连接
+        let mut connection = self.get_connection()?;
+
+        // 开启事务， 允许读写操作
+        let mut transaction = connection.start_transaction(*txopts)?;
+
+        // 匹配正确和错误
+        match transaction.query_map(query, f) {
+            Ok(result) => {
+                // 提交事务
+                transaction.commit()?;
+                Ok(result)
+            }
+            Err(err) => {
+                // 这里好像回滚和不回滚都是一样的
+                transaction.rollback()?;
+                Err(Box::new(err))
+            }
+        }
+    }
+
+    pub fn query_drop(
+        &self, 
+        query: &str,
+        txopts: &TxOpts,
+    ) -> Result<u32, Box<dyn std::error::Error + '_>> 
+    {
+        // 获取连接
+        let mut connection = self.get_connection()?;
+
+        // 开启事务， 允许读写操作
+        let mut transaction = connection.start_transaction(*txopts)?;
+
+        // 执行插入语句，匹配正确和错误
+        match transaction.query_drop(query) {
+            Ok(_) => {
+                // 提交事务
+                // 执行查询以获取最后插入的自增主键值
+                let result: Option<u32> = transaction.query_first("SELECT LAST_INSERT_ID()")?;
+
+                match result {
+                    Some(value) => {
+                        // 查询成功提交事务和返回正确值
+                        transaction.commit()?;        
+                        return Ok(value);
+                    }
+                    None => {
+                        // 事务进行回滚
+                        transaction.rollback()?;
+                        return Err("Last insert id not found".into());
+                    }
+                };
+            }
+            Err(err) => {
+                // 这里好像回滚和不回滚都是一样的
+                transaction.rollback()?;
+                return Err(Box::new(err));
+            }
+        }
     }
 }

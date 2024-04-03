@@ -1,10 +1,11 @@
 use actix_cors::Cors;
 use actix_files::Files;
-use actix_web::{web, App, HttpResponse, HttpServer};
+use actix_web::{http, web, App, HttpResponse, HttpServer};
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 
 mod api;
 mod database;
+mod common;
 
 // use database::mysql::*;
 
@@ -13,6 +14,8 @@ use api::{
     post::*,
     recommend::*,
     user::*,
+    search::*,
+    register::*,
 };
 
 const IP_PORT: &str = "127.0.0.1:8082";
@@ -56,19 +59,34 @@ pub async fn main() -> std::io::Result<()> {
     builder.set_certificate_chain_file("cert.pem").unwrap();
 
     HttpServer::new(|| {
+        let cors = Cors::default()
+            .allow_any_origin()
+            .supports_credentials()
+            .allowed_methods(vec!["GET", "POST"])
+            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE])
+            .max_age(3600);
+
         App::new()
+            // .wrap(
+            //     Cors::default()
+            //     .allow_any_origin()
+            //     .allowed_methods(vec!["GET", "POST", "OPTIONS"])
+            // ) // 添加这一行，允许跨域请求
+            .wrap(cors)
             .service(
                 web::scope("/api")
                     .service(get_recommend_post_total_numbers)
                     .service(get_recommend_posts_list)
                     .service(get_follow_posts_list)
                     .service(get_follow_post_total_numbers)
+                    .service(get_search)
                     .service(get_cover)
                     .service(get_post)
                     .service(get_avatar)
-                    .service(get_user),
+                    .service(get_user)
+                    .service(send_verification_code)
+                    .service(verify_verification_code)
             )
-            .wrap(Cors::default().allow_any_origin()) // 添加这一行，允许跨域请求
             .service(
                 Files::new("/", "D:/Web_lesson/vue/myprogram-station/dist")
                     .index_file("index.html"),
@@ -81,6 +99,7 @@ pub async fn main() -> std::io::Result<()> {
             .route("/editor/", web::get().to(index))
             .default_service(web::get().to(index))
     })
+    .workers(8)
     .bind_openssl(IP_PORT, builder)?
     .run()
     .await

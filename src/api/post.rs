@@ -1,14 +1,16 @@
 use actix_web::{get, web, HttpResponse};
-use serde::{Deserialize, Serialize};
 use std::fs; // 将 json 字符串解析为结构体
+
+use crate::database::mysql::*;
 
 // const IP_PORT: &str = "127.0.0.1:8082";
 
 // 封面获取函数
 #[get("/cover/{post_id}")]
-pub async fn get_cover(info: web::Path<(u32,)>) -> actix_web::Result<HttpResponse> {
+pub async fn get_cover(post_id: web::Path<u32>) -> actix_web::Result<HttpResponse> {
     // println!("get_cover");
-    let cover_path = format!("./static/cover/cover-{}.jpg", &info.0);
+    let post_id = *post_id;
+    let cover_path = format!("./static/cover/cover-{}.jpg", post_id);
 
     let cover_data = match fs::read(cover_path) {
         Ok(bytes) => bytes,
@@ -21,34 +23,42 @@ pub async fn get_cover(info: web::Path<(u32,)>) -> actix_web::Result<HttpRespons
         .body(cover_data))
 }
 
-// 创建一个帖子的结构体，用来发送数据
-#[derive(Debug, Deserialize, Serialize)]
-struct Post {
-    id: usize,
-    title: String,
-    release_time: String,
-    cover_url: String,
-    content: String,
-    user_id: usize,
-    user_name: String,
-}
-
 // 获取单个帖子
 #[get("/post/{post_id}")]
-pub async fn get_post(_: web::Path<u32>) -> actix_web::Result<HttpResponse> {
-    // println!("get_recommend_posts_list, {:?}", env::current_dir());
-    let post = Post {
-        id: 666,
-        title: String::from("Post 666"),
-        release_time: String::from("2024-03-04 18:36"),
-        cover_url: String::from("https://127.0.0.1:8082/api/cover/0"),
-        content: fs::read_to_string("./static/content/content-0.md")
-            .expect("content reading failed"),
-        user_id: 666,
-        user_name: String::from("username666"),
+pub async fn get_post(post_id: web::Path<u32>) -> actix_web::Result<HttpResponse> {
+    let post_id = *post_id;
+
+    // 获取线程池，这个线程池为单例模式
+    let my_pool = MysqlPool::instance();
+    // 获取起时下标条数
+    let query = format!("SELECT id, title, release_time, 
+        cover_url, content_url, user_id, user_name FROM post where id = {}", post_id);
+
+    // 获取帖子列表
+    let post: Vec<Post> = match my_pool.query_map(
+        query,
+        |(id, title, release_time, cover_url, content_url, user_id, user_name)
+        : (u32, String, String, String, String, u32, String)| {
+            let content = fs::read_to_string(content_url)
+                .expect("get_post: Failed fs::read_to_string content_url");
+            Post { id, title, release_time, cover_url, content, user_id, user_name }
+        },
+        &my_pool.read_only_txopts
+    ) 
+    {
+        Ok(result) => result,
+        Err(err) => {
+            eprintln!("get_post: Error query_map query: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError("Internal Server Error"));
+        }
     };
 
-    let post_jsons = serde_json::to_string(&post).expect("Failed to serialize posts");
+    // 解析错误
+    let post_jsons = serde_json::to_string(&post[0])
+        .map_err(|err| {
+            eprintln!("get_post: Error serializing response: {:?}", err);
+            actix_web::error::ErrorInternalServerError("Error serializing response")
+        })?;
 
     Ok(HttpResponse::Ok().body(post_jsons))
 }

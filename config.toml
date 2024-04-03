@@ -1,15 +1,23 @@
 [server]
-host = "localhost"
+host = "127.0.0.1"
 port = 8082
-pool_numbers = 15
 
 
 [mysql]
-host = "localhost"
-port = 3306
-username = "zyl"
-password = "password"
+host = "localhost"  # 数据库 ip
+port = 3306         # 数据库端口
+username = "zyl"    # 用户
+password = "password"   # 
 db_name = "program_station"  # 数据库名称
+pool_numbers = 15
+
+
+[email]
+username = "2812470857@qq.com"
+password = "kpstnlhegwzhdhdh"   
+gmail = "smtp.qq.com"
+
+
 
 [redis]
 protocol = "redis"
