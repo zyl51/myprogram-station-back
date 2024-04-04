@@ -10,6 +10,17 @@ use std::sync::{Arc, Mutex};
 
 use crate::common::config::*;
 
+// 返回用户的登录信息
+#[derive(Debug, Deserialize, Serialize)]
+pub struct LoginInfomation {
+    id: u32,
+    name: String,
+    avatar_url: String,
+    follower_count: u32,
+    fans: u32,
+    token: String,
+}
+
 // 返回帖子的结构体
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Post {
@@ -21,6 +32,7 @@ pub struct Post {
     pub user_id: u32,
     pub user_name: String,
 }
+
 pub struct MysqlPool {
     pool: Arc<Mutex<Pool<MySqlConnectionManager>>>,
     pub read_only_txopts: TxOpts,
@@ -74,7 +86,8 @@ impl MysqlPool {
     // 获取数据库连接
     pub fn get_connection(
         &self,
-    ) -> Result<r2d2::PooledConnection<MySqlConnectionManager>, Box<dyn std::error::Error + '_>> {
+    ) -> Result<r2d2::PooledConnection<MySqlConnectionManager>, Box<dyn std::error::Error + '_>>
+    {
         let pool = self.pool.lock()?;
         // 将 r2d2::Error 类型的错误转换为 Box<dyn std::error::Error> 类型的错误
         pool.get().map_err(move |err| err.into())
@@ -147,11 +160,10 @@ impl MysqlPool {
     }
 
     pub fn query_drop(
-        &self, 
+        &self,
         query: &str,
         txopts: &TxOpts,
-    ) -> Result<u32, Box<dyn std::error::Error + '_>> 
-    {
+    ) -> Result<u32, Box<dyn std::error::Error + '_>> {
         // 获取连接
         let mut connection = self.get_connection()?;
 
@@ -168,7 +180,7 @@ impl MysqlPool {
                 match result {
                     Some(value) => {
                         // 查询成功提交事务和返回正确值
-                        transaction.commit()?;        
+                        transaction.commit()?;
                         return Ok(value);
                     }
                     None => {

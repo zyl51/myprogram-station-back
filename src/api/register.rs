@@ -38,7 +38,7 @@ pub async fn send_verification_code(
     // 如果存在返回用户已存在
     if user_id.len() > 0 {
         return Ok(HttpResponse::InternalServerError().body(
-            serde_json::to_string("邮箱已经存在").map_err(|err| {
+            serde_json::to_string("用户已经存在").map_err(|err| {
                 eprintln!("Error serializing response: {:?}", err);
                 actix_web::error::ErrorBadRequest("Error serializing response")
             })?,
