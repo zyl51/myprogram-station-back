@@ -1,0 +1,1095 @@
+2024-04-16T20:43:23.474190+08:00 - INFO - Starting to get project configuration
+2024-04-16T20:43:23.475219400+08:00 - INFO - End to get project configuration
+2024-04-16T20:43:23.475261800+08:00 - INFO - Start SSL configuration
+2024-04-16T20:43:23.478927600+08:00 - INFO - End SSL configuration
+2024-04-16T20:43:23.478953600+08:00 - INFO - Start HttpServer
+2024-04-16T20:43:23.480340300+08:00 - INFO - starting 8 workers
+2024-04-16T20:43:23.480419500+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T20:43:25.825416300+08:00 - INFO - delete Bearer 
+2024-04-16T20:43:25.826041+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:43:25.861374100+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:43:25.862244100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:43:25.862604300+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:43:25.872930200+08:00 - ERROR - auth_header_value is None
+2024-04-16T20:43:25.872993500+08:00 - ERROR - Error update_userprofile_avatar_url is token_to_claims
+2024-04-16T20:44:06.924498700+08:00 - INFO - delete Bearer 
+2024-04-16T20:44:06.925133+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:44:06.926366100+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:44:06.927254400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:44:06.927963900+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:44:06.948438600+08:00 - INFO - delete Bearer 
+2024-04-16T20:44:06.948793300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:44:06.949957700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:44:06.950745400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:44:06.951429900+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:45:54.476188+08:00 - INFO - delete Bearer 
+2024-04-16T20:45:54.476524+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:45:54.477283500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:45:54.477625500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:45:54.477860600+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:45:54.477887400+08:00 - INFO - delete Bearer 
+2024-04-16T20:45:54.478480900+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:45:54.478957500+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:45:54.479645600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:45:54.480276300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:45:54.711779300+08:00 - INFO - Start get_avatar function
+2024-04-16T20:45:54.711934500+08:00 - INFO - End get_avatar function
+2024-04-16T20:46:15.404897700+08:00 - INFO - delete Bearer 
+2024-04-16T20:46:15.405594300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:46:15.406574500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:46:15.407235600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:46:15.408017900+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:46:15.419593200+08:00 - INFO - delete Bearer 
+2024-04-16T20:46:15.420081700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:46:15.421938+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:46:15.423121200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:46:15.423991+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:46:47.228125200+08:00 - INFO - delete Bearer 
+2024-04-16T20:46:47.229266+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:46:47.230752100+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:46:47.231359300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:46:47.232098400+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:46:47.232156900+08:00 - INFO - delete Bearer 
+2024-04-16T20:46:47.233091100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:46:47.233636200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:46:47.234430200+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:46:47.235270+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:46:47.301031100+08:00 - INFO - Start get_avatar function
+2024-04-16T20:46:47.301283600+08:00 - INFO - End get_avatar function
+2024-04-16T20:48:08.741724700+08:00 - INFO - delete Bearer 
+2024-04-16T20:48:08.742090600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:48:08.743228800+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:48:08.743667100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:08.743946800+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:48:08.743984400+08:00 - INFO - delete Bearer 
+2024-04-16T20:48:08.744500100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:48:08.744768600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:48:08.745167100+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:48:08.745404200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:08.822493900+08:00 - INFO - Start get_avatar function
+2024-04-16T20:48:08.822871+08:00 - INFO - End get_avatar function
+2024-04-16T20:48:10.357984+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T20:48:10.362533300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:10.366629900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T20:48:10.368607200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:10.370687300+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T20:48:10.374073900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:48:10.379125100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T20:48:10.381563+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:48:10.549275+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:10.551137+08:00 - INFO - End get_cover function
+2024-04-16T20:48:10.677478+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:10.678196+08:00 - INFO - End get_cover function
+2024-04-16T20:48:10.682217300+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:10.683642200+08:00 - INFO - End get_cover function
+2024-04-16T20:48:10.684018300+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:10.684616800+08:00 - INFO - End get_cover function
+2024-04-16T20:48:10.684800400+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:10.684954700+08:00 - INFO - End get_cover function
+2024-04-16T20:48:12.360826900+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T20:48:12.362123400+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T20:48:12.363004900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:12.364046500+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T20:48:12.364767400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:12.365042400+08:00 - INFO - End get_userprofile_user function
+2024-04-16T20:48:12.366689700+08:00 - INFO - delete Bearer 
+2024-04-16T20:48:12.367217300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:48:12.368598800+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:48:12.369643100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:12.370262200+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:48:12.371335900+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T20:48:12.372232300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:12.372780300+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T20:48:12.374198400+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T20:48:12.375286100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:48:12.375546100+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T20:48:12.375850200+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T20:48:12.376882200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T20:48:12.378867200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:48:12.381917400+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T20:48:12.804138200+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:12.804387+08:00 - INFO - End get_cover function
+2024-04-16T20:48:12.804614500+08:00 - INFO - Start get_cover function
+2024-04-16T20:48:12.804850400+08:00 - INFO - End get_cover function
+2024-04-16T20:50:16.776009900+08:00 - INFO - delete Bearer 
+2024-04-16T20:50:16.776722400+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:50:16.778169200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:50:16.779040600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:50:16.779984500+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:50:16.796101200+08:00 - INFO - delete Bearer 
+2024-04-16T20:50:16.797010600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:50:16.799149400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:50:16.800191500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:50:16.801280400+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:50:58.718215200+08:00 - INFO - delete Bearer 
+2024-04-16T20:50:58.718545400+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:50:58.719340+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:50:58.719736500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:50:58.719997300+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:50:58.720036900+08:00 - INFO - delete Bearer 
+2024-04-16T20:50:58.720531+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:50:58.720804900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:50:58.721215400+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:50:58.721445400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:50:58.796994900+08:00 - INFO - Start get_avatar function
+2024-04-16T20:50:58.797182100+08:00 - INFO - End get_avatar function
+2024-04-16T20:51:08.300518500+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:08.301124400+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:51:08.302146600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:51:08.302817700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:08.303598100+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:51:08.314608100+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:08.315268500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:51:08.316957700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:51:08.317893700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:08.318904700+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:51:37.113087700+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:37.114025500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:51:37.115273900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:51:37.115736900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:37.116294800+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:51:37.116348900+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:37.117104800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:51:37.117706100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:51:37.118836600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:51:37.119539800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:37.206253300+08:00 - INFO - Start get_avatar function
+2024-04-16T20:51:37.206671+08:00 - INFO - End get_avatar function
+2024-04-16T20:51:42.422913100+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:42.423685+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:51:42.425085600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:51:42.425883300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:42.426743400+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:51:42.439406400+08:00 - INFO - delete Bearer 
+2024-04-16T20:51:42.439916300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:51:42.441461200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:51:42.442231+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:51:42.443187900+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:52:43.000055300+08:00 - INFO - delete Bearer 
+2024-04-16T20:52:43.000256500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:52:43.000874600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:52:43.001269800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:52:43.001516100+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:52:43.009270100+08:00 - INFO - delete Bearer 
+2024-04-16T20:52:43.009604800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:52:43.010998900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:52:43.011767700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:52:43.012301300+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:54:58.885428300+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T20:54:58.885592700+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T20:54:58.885620500+08:00 - INFO - shutting down idle worker
+2024-04-16T20:54:58.885728500+08:00 - INFO - shutting down idle worker
+2024-04-16T20:54:58.885820+08:00 - INFO - accept thread stopped
+2024-04-16T20:54:58.885865100+08:00 - INFO - shutting down idle worker
+2024-04-16T20:54:58.886135900+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T20:54:58.886260800+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T20:54:58.886302900+08:00 - INFO - shutting down idle worker
+2024-04-16T20:54:58.886399400+08:00 - INFO - shutting down idle worker
+2024-04-16T20:55:04.816415200+08:00 - INFO - Starting to get project configuration
+2024-04-16T20:55:04.817479900+08:00 - INFO - End to get project configuration
+2024-04-16T20:55:04.817551+08:00 - INFO - Start SSL configuration
+2024-04-16T20:55:04.821483500+08:00 - INFO - End SSL configuration
+2024-04-16T20:55:04.821514500+08:00 - INFO - Start HttpServer
+2024-04-16T20:55:04.822756200+08:00 - INFO - starting 8 workers
+2024-04-16T20:55:04.822835800+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T20:55:09.342936500+08:00 - INFO - delete Bearer 
+2024-04-16T20:55:09.343562500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:55:09.377008900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:55:09.377620900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:55:09.377920500+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:55:09.388322500+08:00 - INFO - delete Bearer 
+2024-04-16T20:55:09.388764+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:55:09.390325900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:55:09.390800200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:55:09.391088100+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:55:51.042231+08:00 - INFO - delete Bearer 
+2024-04-16T20:55:51.042878300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:55:51.044181700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:55:51.045101800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:55:51.045870+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:55:51.057403300+08:00 - INFO - delete Bearer 
+2024-04-16T20:55:51.058482200+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:55:51.060259800+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:55:51.061255+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:55:51.062381200+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:57:21.616197800+08:00 - INFO - delete Bearer 
+2024-04-16T20:57:21.617141600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:57:21.617960700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:57:21.618346900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:57:21.618587200+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:57:21.618606900+08:00 - INFO - delete Bearer 
+2024-04-16T20:57:21.619076100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T20:57:21.619384900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T20:57:21.619800+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T20:57:21.620156100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:57:21.697904300+08:00 - INFO - Start get_avatar function
+2024-04-16T20:57:21.698103800+08:00 - INFO - End get_avatar function
+2024-04-16T20:58:41.145121300+08:00 - INFO - delete Bearer 
+2024-04-16T20:58:41.145349600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:58:41.145991700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:58:41.146341900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:58:41.146588900+08:00 - INFO - End executing Claims::verify
+2024-04-16T20:58:41.153398+08:00 - INFO - delete Bearer 
+2024-04-16T20:58:41.154184600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T20:58:41.155565700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T20:58:41.156287900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T20:58:41.156858700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:00:25.429803+08:00 - INFO - delete Bearer 
+2024-04-16T21:00:25.430140800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:00:25.430971100+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:00:25.431586400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:00:25.431960600+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:00:25.440758100+08:00 - INFO - delete Bearer 
+2024-04-16T21:00:25.441192700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:00:25.442601400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:00:25.443396600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:00:25.444218100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:01:06.864180100+08:00 - INFO - delete Bearer 
+2024-04-16T21:01:06.864542600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:01:06.865386200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:01:06.865754200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:01:06.866028700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:01:06.874492600+08:00 - INFO - delete Bearer 
+2024-04-16T21:01:06.874875900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:01:06.875584800+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:01:06.876024700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:01:06.876722600+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:02:33.843223800+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:02:33.843463600+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:02:33.843566800+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.843628800+08:00 - INFO - accept thread stopped
+2024-04-16T21:02:33.843699200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.843788200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.843862800+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.844005400+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.844099500+08:00 - INFO - shutting down idle worker
+2024-04-16T21:02:33.844398300+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:02:39.900263900+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:02:39.901393800+08:00 - INFO - End to get project configuration
+2024-04-16T21:02:39.901440+08:00 - INFO - Start SSL configuration
+2024-04-16T21:02:39.904895500+08:00 - INFO - End SSL configuration
+2024-04-16T21:02:39.904913300+08:00 - INFO - Start HttpServer
+2024-04-16T21:02:39.906049600+08:00 - INFO - starting 8 workers
+2024-04-16T21:02:39.906124800+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:02:42.142025+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:42.143028+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:02:42.176920400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:02:42.178169400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:42.178794800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:02:42.178851700+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:42.179565800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:02:42.180017500+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:02:42.180958300+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:02:42.181898900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:42.217359+08:00 - INFO - Start get_avatar function
+2024-04-16T21:02:42.217512300+08:00 - INFO - End get_avatar function
+2024-04-16T21:02:49.145051+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:49.145686600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:02:49.147055400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:02:49.147942600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:49.149012500+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:02:49.164129300+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:49.165019400+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:02:49.166388200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:02:49.167145200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:49.167884300+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:02:49.192443800+08:00 - INFO - Start get_avatar function
+2024-04-16T21:02:49.192764300+08:00 - INFO - End get_avatar function
+2024-04-16T21:02:55.260201700+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:55.261283200+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:02:55.262727500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:02:55.263523800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:55.264289200+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:02:55.264362300+08:00 - INFO - delete Bearer 
+2024-04-16T21:02:55.265745300+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:02:55.266670200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:02:55.268110200+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:02:55.268759900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:02:55.335210400+08:00 - INFO - Start get_avatar function
+2024-04-16T21:02:55.335553800+08:00 - INFO - End get_avatar function
+2024-04-16T21:03:23.326838+08:00 - INFO - delete Bearer 
+2024-04-16T21:03:23.327055700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:03:23.327726400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:03:23.328078800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:03:23.328322700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:03:23.329293700+08:00 - INFO - Successful update_userprofile_username executing update user name
+2024-04-16T21:04:15.272966500+08:00 - INFO - Start get_avatar function
+2024-04-16T21:04:15.273130300+08:00 - INFO - End get_avatar function
+2024-04-16T21:04:25.218670800+08:00 - INFO - Start get_avatar function
+2024-04-16T21:04:25.218907+08:00 - INFO - End get_avatar function
+2024-04-16T21:04:35.624775100+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:04:35.624865200+08:00 - INFO - accept thread stopped
+2024-04-16T21:04:35.624910100+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:35.624945900+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:35.624994+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:35.625079800+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:04:35.625180+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:35.625278200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:35.625336+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:04:35.625379200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:04:36.981772+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:04:36.982933300+08:00 - INFO - End to get project configuration
+2024-04-16T21:04:36.982974100+08:00 - INFO - Start SSL configuration
+2024-04-16T21:04:36.987548400+08:00 - INFO - End SSL configuration
+2024-04-16T21:04:36.987588900+08:00 - INFO - Start HttpServer
+2024-04-16T21:04:36.988790600+08:00 - INFO - starting 8 workers
+2024-04-16T21:04:36.988860900+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:04:39.293586900+08:00 - INFO - delete Bearer 
+2024-04-16T21:04:39.294177+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:04:39.325639+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:04:39.327080700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:04:39.327915700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:04:39.327985700+08:00 - INFO - delete Bearer 
+2024-04-16T21:04:39.329139200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:04:39.329955900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:04:39.331269600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:04:39.332249500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:04:39.373527200+08:00 - INFO - Start get_avatar function
+2024-04-16T21:04:39.373717100+08:00 - INFO - End get_avatar function
+2024-04-16T21:06:19.511963600+08:00 - INFO - delete Bearer 
+2024-04-16T21:06:19.512383900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:06:19.513185200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:06:19.513733900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:06:19.513999100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:06:19.514029600+08:00 - INFO - delete Bearer 
+2024-04-16T21:06:19.514628600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:06:19.515114800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:06:19.515903600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:06:19.516306400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:06:19.583779300+08:00 - INFO - Start get_avatar function
+2024-04-16T21:06:19.583952500+08:00 - INFO - End get_avatar function
+2024-04-16T21:09:17.680035100+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:09:17.680171800+08:00 - INFO - accept thread stopped
+2024-04-16T21:09:17.680236200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:17.680306+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:17.680402400+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:09:17.680531800+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:17.680679100+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:09:17.680848600+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:17.680953800+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:17.681076300+08:00 - INFO - shutting down idle worker
+2024-04-16T21:09:26.865017100+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:09:26.866290600+08:00 - INFO - End to get project configuration
+2024-04-16T21:09:26.866329900+08:00 - INFO - Start SSL configuration
+2024-04-16T21:09:26.870296700+08:00 - INFO - End SSL configuration
+2024-04-16T21:09:26.870331200+08:00 - INFO - Start HttpServer
+2024-04-16T21:09:26.871638300+08:00 - INFO - starting 8 workers
+2024-04-16T21:09:26.871720800+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:09:30.168629800+08:00 - INFO - delete Bearer 
+2024-04-16T21:09:30.169598600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:09:30.200208200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:09:30.201638900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:09:30.202394200+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:09:30.202479800+08:00 - INFO - delete Bearer 
+2024-04-16T21:09:30.203918800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:09:30.204962600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:09:30.207072700+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:09:30.208054900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:09:30.244658400+08:00 - INFO - Start get_avatar function
+2024-04-16T21:09:30.244870800+08:00 - INFO - End get_avatar function
+2024-04-16T21:10:11.246208800+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:10:11.246486500+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:11.246707+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:11.246844100+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:11.247021300+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:11.247156700+08:00 - INFO - accept thread stopped
+2024-04-16T21:10:11.247336500+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:10:11.247459300+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:10:11.247598400+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:11.248059+08:00 - INFO - shutting down idle worker
+2024-04-16T21:10:19.731911600+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:10:19.734198100+08:00 - INFO - End to get project configuration
+2024-04-16T21:10:19.734262800+08:00 - INFO - Start SSL configuration
+2024-04-16T21:10:19.738166+08:00 - INFO - End SSL configuration
+2024-04-16T21:10:19.738206400+08:00 - INFO - Start HttpServer
+2024-04-16T21:10:19.739823500+08:00 - INFO - starting 8 workers
+2024-04-16T21:10:19.739927200+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:10:20.814504700+08:00 - INFO - delete Bearer 
+2024-04-16T21:10:20.815625300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:10:20.848714200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:10:20.850245600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:10:20.850985800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:10:20.851067100+08:00 - INFO - delete Bearer 
+2024-04-16T21:10:20.852418100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:10:20.853648600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:10:20.854574600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:10:20.855374400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:10:20.911564400+08:00 - INFO - Start get_avatar function
+2024-04-16T21:10:20.911849400+08:00 - INFO - End get_avatar function
+2024-04-16T21:15:55.746313200+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:15:55.748575600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:55.762871100+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:15:55.765010500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:55.765748900+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:15:55.766718800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:15:55.774105400+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:15:55.774957+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:15:55.976250300+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:55.976536+08:00 - INFO - End get_cover function
+2024-04-16T21:15:56.120337500+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:56.120568800+08:00 - INFO - End get_cover function
+2024-04-16T21:15:56.120703600+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:56.120877+08:00 - INFO - End get_cover function
+2024-04-16T21:15:56.120973400+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:56.121065200+08:00 - INFO - End get_cover function
+2024-04-16T21:15:56.121119500+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:56.121171400+08:00 - INFO - End get_cover function
+2024-04-16T21:15:56.660142500+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:15:56.661445500+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:15:56.662343700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:56.663590500+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:15:56.664497400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:56.664768500+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:15:56.665664400+08:00 - INFO - delete Bearer 
+2024-04-16T21:15:56.666160700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:15:56.667263600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:15:56.667831300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:56.668260900+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:15:56.669069800+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:15:56.669835600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:56.670202300+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:15:56.671096100+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:15:56.671952800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:15:56.672174400+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:15:56.672373800+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:15:56.673245700+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:15:56.674242700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:15:56.675023900+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:15:56.682257300+08:00 - INFO - Start get_avatar function
+2024-04-16T21:15:56.682628200+08:00 - INFO - End get_avatar function
+2024-04-16T21:15:57.158470700+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:57.158638500+08:00 - INFO - End get_cover function
+2024-04-16T21:15:57.158734600+08:00 - INFO - Start get_cover function
+2024-04-16T21:15:57.158842500+08:00 - INFO - End get_cover function
+2024-04-16T21:19:19.729496+08:00 - INFO - Start get_avatar function
+2024-04-16T21:19:19.729715200+08:00 - INFO - End get_avatar function
+2024-04-16T21:19:24.062020300+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:24.062365900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:19:24.063651400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:19:24.064428100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:24.065058400+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:19:24.076358900+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:24.076927500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:19:24.078061600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:19:24.078687800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:24.079187100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:19:24.102122200+08:00 - INFO - Start get_avatar function
+2024-04-16T21:19:24.102358300+08:00 - INFO - End get_avatar function
+2024-04-16T21:19:42.154562+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:42.155078600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:19:42.156285600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:19:42.156950400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:42.157371400+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:19:42.166473600+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:42.166879800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:19:42.167916200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:19:42.168639400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:42.169209100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:19:42.193364800+08:00 - INFO - Start get_avatar function
+2024-04-16T21:19:42.193642700+08:00 - INFO - End get_avatar function
+2024-04-16T21:19:44.726480700+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:44.726867700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:19:44.727682900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:19:44.728006600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:44.728236100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:19:44.728252800+08:00 - INFO - delete Bearer 
+2024-04-16T21:19:44.728985100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:19:44.729468200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:19:44.730261800+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:19:44.730567400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:19:44.750555300+08:00 - INFO - Start get_avatar function
+2024-04-16T21:19:44.750798200+08:00 - INFO - End get_avatar function
+2024-04-16T21:20:40.019193500+08:00 - INFO - delete Bearer 
+2024-04-16T21:20:40.019763600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:20:40.020864+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:20:40.021679900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:20:40.022484700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:20:40.035131500+08:00 - INFO - delete Bearer 
+2024-04-16T21:20:40.035954800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:20:40.037660500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:20:40.038871700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:20:40.040030800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:20:40.063428900+08:00 - INFO - Start get_avatar function
+2024-04-16T21:20:40.063977400+08:00 - INFO - End get_avatar function
+2024-04-16T21:22:43.463828100+08:00 - INFO - delete Bearer 
+2024-04-16T21:22:43.464346600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:22:43.465879500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:22:43.466956400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:43.467350900+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:22:43.468973600+08:00 - INFO - Successful update_userprofile_username executing update user name
+2024-04-16T21:22:57.095541400+08:00 - INFO - delete Bearer 
+2024-04-16T21:22:57.096234800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:22:57.098207+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:22:57.099177600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:57.100042800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:22:57.119764100+08:00 - INFO - delete Bearer 
+2024-04-16T21:22:57.120346800+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:22:57.121558+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:22:57.122097100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:57.122739300+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:22:57.148702500+08:00 - INFO - Start get_avatar function
+2024-04-16T21:22:57.149334500+08:00 - INFO - End get_avatar function
+2024-04-16T21:22:59.433598600+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:22:59.434574+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:22:59.435276300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:59.436147900+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:22:59.436803100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:59.437067300+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:22:59.444140600+08:00 - INFO - delete Bearer 
+2024-04-16T21:22:59.445593+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:22:59.446952+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:22:59.447767800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:59.448554400+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:22:59.449484700+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:22:59.450820800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:59.451693700+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:22:59.453623900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:22:59.455460100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:22:59.455840500+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:22:59.456085800+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:22:59.457188200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:22:59.460996600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:22:59.463619800+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:22:59.735254600+08:00 - INFO - Start get_cover function
+2024-04-16T21:22:59.735547+08:00 - INFO - End get_cover function
+2024-04-16T21:22:59.956540900+08:00 - INFO - Start get_cover function
+2024-04-16T21:22:59.956785800+08:00 - INFO - End get_cover function
+2024-04-16T21:22:59.957007900+08:00 - INFO - Start get_cover function
+2024-04-16T21:22:59.957245700+08:00 - INFO - End get_cover function
+2024-04-16T21:23:26.848113800+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:23:26.851052700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:26.853354700+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:23:26.855433400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:26.862712+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:23:26.865537800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:26.870134400+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:23:26.872541900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:27.044085900+08:00 - INFO - Start get_cover function
+2024-04-16T21:23:27.044619800+08:00 - INFO - End get_cover function
+2024-04-16T21:23:27.204345+08:00 - INFO - Start get_cover function
+2024-04-16T21:23:27.204599300+08:00 - INFO - End get_cover function
+2024-04-16T21:23:27.204851500+08:00 - INFO - Start get_cover function
+2024-04-16T21:23:27.205144400+08:00 - INFO - End get_cover function
+2024-04-16T21:23:27.205533200+08:00 - INFO - Start get_cover function
+2024-04-16T21:23:27.205805600+08:00 - INFO - End get_cover function
+2024-04-16T21:23:28.415906100+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:23:28.416243600+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:28.416939200+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:28.418556600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:28.419427700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.420251200+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:28.420328300+08:00 - INFO - Executing MySQL statement: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:28.421405900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:28.422275100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.424547400+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:23:28.425079200+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:28.426087+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:28.427612900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:28.428672300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.429696700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:28.429783+08:00 - INFO - Executing MySQL statement: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:28.431385300+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:28.432292300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.436916800+08:00 - INFO - Start get_follow_posts_list function
+2024-04-16T21:23:28.437749+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:28.438960100+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:28.440083500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:28.440595300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.441542+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:28.442952300+08:00 - INFO - my_pool query_map function execution query: "\n            SELECT post.id, post.title, post.release_time, post.cover_url, \n                post.content_url, post.user_id, post.user_name FROM post\n            JOIN follow ON post.user_id = follow.following_id \n            WHERE follow.follower_id = 14\n            ORDER BY post.release_time DESC\n            LIMIT 0, 10;\n    "
+2024-04-16T21:23:28.443734700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:28.444108800+08:00 - INFO - End get_follow_posts_list function
+2024-04-16T21:23:28.446186900+08:00 - INFO - Start get_follow_posts_list function
+2024-04-16T21:23:28.446689800+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:28.447598300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:28.448956300+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:28.449480300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:28.449992800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:28.450708800+08:00 - INFO - my_pool query_map function execution query: "\n            SELECT post.id, post.title, post.release_time, post.cover_url, \n                post.content_url, post.user_id, post.user_name FROM post\n            JOIN follow ON post.user_id = follow.following_id \n            WHERE follow.follower_id = 14\n            ORDER BY post.release_time DESC\n            LIMIT 0, 10;\n    "
+2024-04-16T21:23:28.451449100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:28.452077300+08:00 - INFO - End get_follow_posts_list function
+2024-04-16T21:23:30.003721200+08:00 - INFO - Start get_follow_posts_list function
+2024-04-16T21:23:30.004493400+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:30.005408900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:30.006854400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:30.007685400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:30.008589600+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:30.009460800+08:00 - INFO - my_pool query_map function execution query: "\n            SELECT post.id, post.title, post.release_time, post.cover_url, \n                post.content_url, post.user_id, post.user_name FROM post\n            JOIN follow ON post.user_id = follow.following_id \n            WHERE follow.follower_id = 14\n            ORDER BY post.release_time DESC\n            LIMIT 10, 10;\n    "
+2024-04-16T21:23:30.010509300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:30.010867800+08:00 - INFO - End get_follow_posts_list function
+2024-04-16T21:23:30.622199600+08:00 - INFO - Start get_follow_posts_list function
+2024-04-16T21:23:30.623137900+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:30.624419900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:30.625674100+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:30.626500800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:30.627322100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:30.628355100+08:00 - INFO - my_pool query_map function execution query: "\n            SELECT post.id, post.title, post.release_time, post.cover_url, \n                post.content_url, post.user_id, post.user_name FROM post\n            JOIN follow ON post.user_id = follow.following_id \n            WHERE follow.follower_id = 14\n            ORDER BY post.release_time DESC\n            LIMIT 20, 10;\n    "
+2024-04-16T21:23:30.629454400+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:30.629815500+08:00 - INFO - End get_follow_posts_list function
+2024-04-16T21:23:32.914694600+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:23:32.916148+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:23:32.916804900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:32.917941300+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:23:32.918676100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:32.919040400+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:23:32.925563500+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:32.927039200+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:32.928594600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:32.929573200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:32.930397700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:32.931349300+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:23:32.932053600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:32.932630900+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:23:32.933385100+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:32.934152800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:32.934608+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:23:32.934931300+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:23:32.935921600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:23:32.938638900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:32.940955+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:23:37.142982800+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:23:37.144340200+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:23:37.145203800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:37.146502800+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:23:37.147117700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:37.147549900+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:23:37.151158600+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:37.152331+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:37.153687300+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:37.154724500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:37.155745800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:37.157585400+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:23:37.158614600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:37.159438700+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:23:37.160902300+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:23:37.161559600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:37.161994500+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:23:37.162279300+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:23:37.163418100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:23:37.164942+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:23:37.166819100+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:23:38.985981600+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:38.986895600+08:00 - INFO - delete Bearer 
+2024-04-16T21:23:38.987566500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:38.987961500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:23:38.988542400+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:38.989002+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:23:38.989264500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:38.989860800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:38.989998+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:38.990370800+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:23:38.990762100+08:00 - INFO - my_pool exec function execution query: "select post_id from collect_post where user_id = 14;"
+2024-04-16T21:23:38.991199500+08:00 - INFO - my_pool exec function execution query: "select count(*) from collect_post where user_id = 14;"
+2024-04-16T21:23:38.991655100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:38.992074400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:23:38.992570600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE id IN (5, 7)\n        LIMIT 0, 10"
+2024-04-16T21:23:38.993681600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:31:23.747969100+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:31:23.748099200+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:31:23.748135600+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:31:23.748167100+08:00 - INFO - shutting down idle worker
+2024-04-16T21:31:23.748216800+08:00 - INFO - shutting down idle worker
+2024-04-16T21:31:23.748273400+08:00 - INFO - shutting down idle worker
+2024-04-16T21:31:23.748315800+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:31:23.748384100+08:00 - INFO - accept thread stopped
+2024-04-16T21:31:23.748594400+08:00 - INFO - shutting down idle worker
+2024-04-16T21:31:23.748763700+08:00 - INFO - shutting down idle worker
+2024-04-16T21:31:30.143012600+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:31:30.144074700+08:00 - INFO - End to get project configuration
+2024-04-16T21:31:30.144118300+08:00 - INFO - Start SSL configuration
+2024-04-16T21:31:30.147514300+08:00 - INFO - End SSL configuration
+2024-04-16T21:31:30.147531900+08:00 - INFO - Start HttpServer
+2024-04-16T21:31:30.148653700+08:00 - INFO - starting 8 workers
+2024-04-16T21:31:30.148731500+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:31:50.320927800+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:50.321345400+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:50.953573200+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:31:50.953987800+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:50.954105100+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:50.954981100+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:31:50.955342+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:50.955433+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:51.728411800+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:51.728554100+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:51.739068800+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:31:51.739425700+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:51.739566500+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:52.545521100+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:52.545664600+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:52.549388600+08:00 - INFO - Start executing get_follow_post_total_numbers function
+2024-04-16T21:31:52.549567400+08:00 - INFO - delete Bearer 
+2024-04-16T21:31:52.549650800+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:31:56.680873400+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:31:56.683552300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:31:56.685251+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:31:56.687844300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:31:56.689304700+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:31:56.690953100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:31:56.694022500+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:31:56.694826900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:31:56.876139800+08:00 - INFO - Start get_cover function
+2024-04-16T21:31:56.876425300+08:00 - INFO - End get_cover function
+2024-04-16T21:31:56.995272400+08:00 - INFO - Start get_cover function
+2024-04-16T21:31:56.995471500+08:00 - INFO - End get_cover function
+2024-04-16T21:31:56.996670600+08:00 - INFO - Start get_cover function
+2024-04-16T21:31:56.996815300+08:00 - INFO - End get_cover function
+2024-04-16T21:31:57.007083700+08:00 - INFO - Start get_cover function
+2024-04-16T21:31:57.007257700+08:00 - INFO - End get_cover function
+2024-04-16T21:31:57.007372300+08:00 - INFO - Start get_cover function
+2024-04-16T21:31:57.007472100+08:00 - INFO - End get_cover function
+2024-04-16T21:32:01.162484100+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:32:01.163175300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:01.163669300+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:32:01.164289500+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:01.164743200+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:32:01.165175500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:28.545664400+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:28.546209300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:32:28.547127200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:32:28.547700300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:28.548011100+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:32:28.548039200+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:28.548528600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:32:28.548852700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:28.549433100+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:32:28.549784800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:28.604041800+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:32:28.605809500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:28.626902800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:32:28.627937100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:28.715852800+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:28.716099800+08:00 - INFO - End get_cover function
+2024-04-16T21:32:28.718500100+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:28.718711400+08:00 - INFO - End get_cover function
+2024-04-16T21:32:28.719946700+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:28.720169300+08:00 - INFO - End get_cover function
+2024-04-16T21:32:29.381509400+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:29.381683800+08:00 - INFO - End get_cover function
+2024-04-16T21:32:29.381796200+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:29.381869200+08:00 - INFO - End get_cover function
+2024-04-16T21:32:35.711227400+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:35.711320800+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:36.743356400+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:36.743427+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:37.325570900+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:37.325644700+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:37.573366100+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:37.573441+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:37.774583500+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:37.774662300+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:37.951198800+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:37.951305300+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:38.060641100+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:38.060722400+08:00 - ERROR - Error is Token verif_jwt
+2024-04-16T21:32:43.112617600+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:32:43.113090900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:43.114238300+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:32:43.114903200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:43.115356100+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:32:43.115583900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:46.090326+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:32:46.092132200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:46.096768600+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:32:46.098790500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:46.109617400+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:32:46.110755700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:46.112858500+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:32:46.113782300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:46.301935600+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:46.302183600+08:00 - INFO - End get_cover function
+2024-04-16T21:32:46.447378900+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:46.447579+08:00 - INFO - End get_cover function
+2024-04-16T21:32:46.447706900+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:46.447873900+08:00 - INFO - End get_cover function
+2024-04-16T21:32:46.447964+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:46.448058100+08:00 - INFO - End get_cover function
+2024-04-16T21:32:46.448114600+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:46.448165+08:00 - INFO - End get_cover function
+2024-04-16T21:32:54.681736800+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:32:54.682540700+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:32:54.683140300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:54.683694+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:32:54.684169700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:54.684358400+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:32:54.684517600+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:32:54.685066200+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:32:54.685663300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:54.685817800+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:32:54.685967300+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:32:54.686412100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:32:54.687365800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:32:54.688277100+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:32:54.699051100+08:00 - INFO - delete Bearer 
+2024-04-16T21:32:54.699126300+08:00 - INFO - Start get_avatar function
+2024-04-16T21:32:54.699363800+08:00 - INFO - End get_avatar function
+2024-04-16T21:32:54.699457300+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:32:54.700479600+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:32:54.701405500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:54.701850900+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:32:54.702381500+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:32:54.702976500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:32:55.096062+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:55.096268100+08:00 - INFO - End get_cover function
+2024-04-16T21:32:55.096366900+08:00 - INFO - Start get_cover function
+2024-04-16T21:32:55.096487100+08:00 - INFO - End get_cover function
+2024-04-16T21:32:57.977681700+08:00 - INFO - Start get_avatar function
+2024-04-16T21:32:57.977882600+08:00 - INFO - End get_avatar function
+2024-04-16T21:33:00.541493900+08:00 - INFO - delete Bearer 
+2024-04-16T21:33:00.542001+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:33:00.543335300+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:33:00.543797600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:00.544355400+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:33:00.544403+08:00 - INFO - delete Bearer 
+2024-04-16T21:33:00.545403900+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:33:00.545929300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:00.546414900+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:33:00.547050200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:00.555064+08:00 - INFO - Start get_avatar function
+2024-04-16T21:33:00.555313100+08:00 - INFO - End get_avatar function
+2024-04-16T21:33:04.357052600+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:33:04.358216900+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:33:04.358822200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:04.359561700+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:33:04.359957100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:04.360146900+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:33:04.362937700+08:00 - INFO - delete Bearer 
+2024-04-16T21:33:04.363275700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:33:04.364007+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:33:04.364357600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:04.364604500+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:33:04.365139200+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:33:04.365435100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:04.365736600+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:33:04.366217500+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:33:04.366558500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:04.366695600+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:33:04.366796500+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:33:04.367165300+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:33:04.367903300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:04.368721300+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:33:04.606722300+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:04.606873500+08:00 - INFO - End get_cover function
+2024-04-16T21:33:04.815867300+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:04.816045900+08:00 - INFO - End get_cover function
+2024-04-16T21:33:04.816149100+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:04.816272500+08:00 - INFO - End get_cover function
+2024-04-16T21:33:09.707154900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:33:09.709151+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:09.710794900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:33:09.712560700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:09.713771500+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:33:09.714593900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:09.716392+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:33:09.717205600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:09.858610100+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:09.858819600+08:00 - INFO - End get_cover function
+2024-04-16T21:33:09.975007+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:09.975217+08:00 - INFO - End get_cover function
+2024-04-16T21:33:09.975353900+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:09.975518500+08:00 - INFO - End get_cover function
+2024-04-16T21:33:09.975608+08:00 - INFO - Start get_cover function
+2024-04-16T21:33:09.975706700+08:00 - INFO - End get_cover function
+2024-04-16T21:33:14.199564700+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:33:14.200189800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:14.201134400+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:33:14.201497200+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:14.202185600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:33:14.203163700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.207295300+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:33:16.208224600+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:33:16.208628600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.209200300+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:33:16.209526500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.209670500+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:33:16.215345500+08:00 - INFO - delete Bearer 
+2024-04-16T21:33:16.215801600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:33:16.216663900+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:33:16.217054+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.217302700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:33:16.217792100+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:33:16.218119800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.218436800+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:33:16.218901900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:33:16.219200700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:33:16.219451100+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:33:16.219585400+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:33:16.220194200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:33:16.221265600+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:33:16.221971400+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:33:17.667123500+08:00 - INFO - Start get_avatar function
+2024-04-16T21:33:17.667285+08:00 - INFO - End get_avatar function
+2024-04-16T21:39:32.774499700+08:00 - INFO - delete Bearer 
+2024-04-16T21:39:32.774797600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:39:32.775580200+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:39:32.775978400+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:39:32.776261700+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:39:32.776279300+08:00 - INFO - delete Bearer 
+2024-04-16T21:39:32.776961100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:39:32.777413700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:39:32.777844400+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:39:32.778150300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:39:32.846068+08:00 - INFO - Start get_avatar function
+2024-04-16T21:39:32.846391100+08:00 - INFO - End get_avatar function
+2024-04-16T21:39:43.645611100+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:39:43.646088800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:39:43.647214700+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:39:43.647784300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:39:43.649022400+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:39:43.649596100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:16.971765100+08:00 - INFO - delete Bearer 
+2024-04-16T21:49:16.972238100+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:49:16.973508700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:49:16.974162900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:16.974404900+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:49:16.974436100+08:00 - INFO - delete Bearer 
+2024-04-16T21:49:16.974979600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:49:16.975341100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:49:16.975751700+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:49:16.976131500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:26.748837500+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:49:26.749632100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:26.750792800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:49:26.751411400+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:49:26.752260600+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:49:26.752643600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.897796200+08:00 - INFO - Start get_userprofile_user function
+2024-04-16T21:49:29.899028800+08:00 - INFO - my_pool exec function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14;"
+2024-04-16T21:49:29.899839800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.900947600+08:00 - INFO - my_pool exec function execution query: "SELECT follower_count, fans FROM user_stats WHERE user_id = 14;"
+2024-04-16T21:49:29.901659700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.901845500+08:00 - INFO - End get_userprofile_user function
+2024-04-16T21:49:29.909887400+08:00 - INFO - delete Bearer 
+2024-04-16T21:49:29.910365500+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:49:29.911257800+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:49:29.911747100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.912105+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:49:29.912453600+08:00 - INFO - Start get_avatar function
+2024-04-16T21:49:29.912658900+08:00 - INFO - End get_avatar function
+2024-04-16T21:49:29.912820+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) \n        from follow\n        where follower_id = 14 and following_id = 14;"
+2024-04-16T21:49:29.913942800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.914240700+08:00 - INFO - Start get_userprofile_post_total_numbers function
+2024-04-16T21:49:29.914803500+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post where user_id = 14;"
+2024-04-16T21:49:29.915586700+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:49:29.915738500+08:00 - INFO - End get_userprofile_post_total_numbers function
+2024-04-16T21:49:29.915885900+08:00 - INFO - Satrt get_userprofile_posts function
+2024-04-16T21:49:29.916824200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post \n        WHERE user_id = 14\n        LIMIT 0, 10"
+2024-04-16T21:49:29.918310700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:49:29.919097600+08:00 - INFO - End get_userprofile_posts function
+2024-04-16T21:49:30.185511300+08:00 - INFO - Start get_cover function
+2024-04-16T21:49:30.185668600+08:00 - INFO - End get_cover function
+2024-04-16T21:49:30.382006800+08:00 - INFO - Start get_cover function
+2024-04-16T21:49:30.382155800+08:00 - INFO - End get_cover function
+2024-04-16T21:49:30.382664700+08:00 - INFO - Start get_cover function
+2024-04-16T21:49:30.382828400+08:00 - INFO - End get_cover function
+2024-04-16T21:49:32.930957+08:00 - INFO - Start get_avatar function
+2024-04-16T21:49:32.931108300+08:00 - INFO - End get_avatar function
+2024-04-16T21:54:46.855102100+08:00 - INFO - SIGINT received; starting forced shutdown
+2024-04-16T21:54:46.855425+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:54:46.855543100+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:54:46.855710400+08:00 - INFO - accept thread stopped
+2024-04-16T21:54:46.855877400+08:00 - INFO - force shutdown worker, closing 1 connections
+2024-04-16T21:54:46.856004200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:54:46.856178700+08:00 - INFO - shutting down idle worker
+2024-04-16T21:54:46.856285200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:54:46.856461200+08:00 - INFO - shutting down idle worker
+2024-04-16T21:54:46.856613900+08:00 - INFO - shutting down idle worker
+2024-04-16T21:54:52.764816200+08:00 - INFO - Starting to get project configuration
+2024-04-16T21:54:52.765846800+08:00 - INFO - End to get project configuration
+2024-04-16T21:54:52.765891300+08:00 - INFO - Start SSL configuration
+2024-04-16T21:54:52.769343200+08:00 - INFO - End SSL configuration
+2024-04-16T21:54:52.769361800+08:00 - INFO - Start HttpServer
+2024-04-16T21:54:52.770520900+08:00 - INFO - starting 8 workers
+2024-04-16T21:54:52.770597500+08:00 - INFO - Actix runtime found; starting in Actix runtime
+2024-04-16T21:54:53.889119800+08:00 - INFO - delete Bearer 
+2024-04-16T21:54:53.889983700+08:00 - INFO - Start executing Claims::verify
+2024-04-16T21:54:53.921680300+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T21:54:53.923212800+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:54:53.923883300+08:00 - INFO - End executing Claims::verify
+2024-04-16T21:54:53.923953200+08:00 - INFO - delete Bearer 
+2024-04-16T21:54:53.925057900+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:54:53.925838900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:54:53.927137300+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:54:53.928568500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:54:53.964958400+08:00 - INFO - Start get_avatar function
+2024-04-16T21:54:53.965280100+08:00 - INFO - End get_avatar function
+2024-04-16T21:54:59.594000300+08:00 - INFO - my_pool exec function execution query: "select user_id, password from login where email = '13517598084@aliyun.com';"
+2024-04-16T21:54:59.594919900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:54:59.595530600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T21:54:59.595820300+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:54:59.596267200+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T21:54:59.596492200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:55:13.075448900+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:55:13.080259+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:55:13.084954+08:00 - INFO - my_pool exec function execution query: "SELECT COUNT(*) FROM post;"
+2024-04-16T21:55:13.087564900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T21:55:13.091692800+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:55:13.094926900+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:55:13.099747600+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, cover_url, content_url, user_id, user_name\n        FROM post\n        order by release_time desc\n        LIMIT 0, 10"
+2024-04-16T21:55:13.101561700+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T21:55:13.294983500+08:00 - INFO - Start get_cover function
+2024-04-16T21:55:13.295444400+08:00 - INFO - End get_cover function
+2024-04-16T21:55:13.411408600+08:00 - INFO - Start get_cover function
+2024-04-16T21:55:13.411738300+08:00 - INFO - End get_cover function
+2024-04-16T21:55:13.412049600+08:00 - INFO - Start get_cover function
+2024-04-16T21:55:13.412521400+08:00 - INFO - End get_cover function
+2024-04-16T21:55:13.412906200+08:00 - INFO - Start get_cover function
+2024-04-16T21:55:13.413214+08:00 - INFO - End get_cover function
+2024-04-16T21:55:13.413448+08:00 - INFO - Start get_cover function
+2024-04-16T21:55:13.413610100+08:00 - INFO - End get_cover function
+2024-04-16T22:26:12.225318700+08:00 - INFO - Start get_post function
+2024-04-16T22:26:12.227676100+08:00 - INFO - my_pool query_map function execution query: "SELECT id, title, release_time, \n        cover_url, content_url, user_id, user_name FROM post where id = 67"
+2024-04-16T22:26:12.228823100+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T22:26:12.229299100+08:00 - INFO - End get_post function
+2024-04-16T22:26:12.245552900+08:00 - INFO - delete Bearer 
+2024-04-16T22:26:12.246115900+08:00 - INFO - my_pool query_map function execution query: "\n        select id, post_id, user_id, username, avatar_url, release_time, comment\n        from user_comment\n        where post_id = 67\n        ORDER BY release_time DESC;\n    "
+2024-04-16T22:26:12.246428+08:00 - INFO - Start executing Claims::verify
+2024-04-16T22:26:12.247837800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T22:26:12.248630500+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T22:26:12.249661900+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:26:12.250201800+08:00 - INFO - End executing Claims::verify
+2024-04-16T22:26:12.251571600+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) from like_post \n        where user_id = 14 and post_id = 67;\n    "
+2024-04-16T22:26:12.253259500+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:26:12.254728100+08:00 - INFO - my_pool exec function execution query: "\n        select count(*) from collect_post \n        where user_id = 14 and post_id = 67;\n    "
+2024-04-16T22:26:12.256327100+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:26:12.256960500+08:00 - INFO - Start get_user function
+2024-04-16T22:26:12.257770200+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 18"
+2024-04-16T22:26:12.258370800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T22:26:12.258654800+08:00 - INFO - End get_user function
+2024-04-16T22:26:12.270665100+08:00 - INFO - Start get_avatar function
+2024-04-16T22:26:12.271040300+08:00 - INFO - End get_avatar function
+2024-04-16T22:49:54.433869600+08:00 - INFO - delete Bearer 
+2024-04-16T22:49:54.435649600+08:00 - INFO - Start executing Claims::verify
+2024-04-16T22:49:54.438447300+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T22:49:54.440511600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:49:54.441540700+08:00 - INFO - End executing Claims::verify
+2024-04-16T22:49:54.441578500+08:00 - INFO - delete Bearer 
+2024-04-16T22:49:54.442515900+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T22:49:54.443322800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T22:49:54.444691400+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T22:49:54.445768300+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:50:00.416089100+08:00 - INFO - delete Bearer 
+2024-04-16T22:50:00.417379900+08:00 - INFO - Start executing Claims::verify
+2024-04-16T22:50:00.419932700+08:00 - INFO - my_pool exec function execution query: "\n            select user_id, email, password\n            from login \n            where user_id = 14"
+2024-04-16T22:50:00.421347200+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-16T22:50:00.422677100+08:00 - INFO - End executing Claims::verify
+2024-04-16T22:50:00.422826200+08:00 - INFO - delete Bearer 
+2024-04-16T22:50:00.424585700+08:00 - INFO - my_pool query_map function execution query: "SELECT id, name, avatar_url FROM user WHERE id = 14"
+2024-04-16T22:50:00.425576800+08:00 - INFO - my_pool query_map transaction has been commit
+2024-04-16T22:50:00.426593500+08:00 - INFO - my_pool exec function execution query: "select follower_count, fans from user_stats where user_id = 14"
+2024-04-16T22:50:00.427164600+08:00 - INFO - my_pool exec transaction has been commit
+2024-04-17T05:30:09.689795800+08:00 - INFO - delete Bearer 
+2024-04-17T05:30:09.690143200+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T05:30:09.691896300+08:00 - INFO - delete Bearer 
+2024-04-17T05:30:09.692371+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T06:09:54.270823+08:00 - INFO - delete Bearer 
+2024-04-17T06:09:54.271191200+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T06:10:00.254787100+08:00 - INFO - delete Bearer 
+2024-04-17T06:10:00.255075400+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T07:04:54.076159500+08:00 - INFO - delete Bearer 
+2024-04-17T07:04:54.076410300+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T07:05:00.071393700+08:00 - INFO - delete Bearer 
+2024-04-17T07:05:00.071625100+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T07:59:54.009137100+08:00 - INFO - delete Bearer 
+2024-04-17T07:59:54.009498200+08:00 - ERROR - Error is Token verif_jwt
+2024-04-17T08:00:42.007762800+08:00 - INFO - delete Bearer 
+2024-04-17T08:00:42.007978+08:00 - ERROR - Error is Token verif_jwt

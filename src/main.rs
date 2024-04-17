@@ -1,24 +1,21 @@
 use actix_cors::Cors;
 use actix_files::Files;
 use actix_web::{http, web, App, HttpResponse, HttpServer};
+use log::info;
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 
 mod api;
-mod database;
 mod common;
+mod database;
 
 // use database::mysql::*;
+use common::config::*;
 
 use api::{
-    follow::*,
-    post::*,
-    recommend::*,
-    user::*,
-    search::*,
-    register::*,
+    follow::*, login::*, post::*, recommend::*, register::*, search::*, user::*, user_profile::*,
+    user_stats::*, user_comment::*, like_collect::*, markdown::*, token::*, forgot_password::*,
+    user_profile_psersonal::*,
 };
-
-const IP_PORT: &str = "127.0.0.1:8082";
 
 async fn index() -> HttpResponse {
     HttpResponse::Ok()
@@ -30,7 +27,14 @@ async fn index() -> HttpResponse {
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
-    // solve();
+
+    // 初始化日志文件
+    log4rs::init_file("log4rs.yaml", Default::default()).expect("Failed log4rs init");
+    // 获取服务端配置
+    let ip = Config::instance().server.host.clone();
+    let port = Config::instance().server.port;
+    let ip_port = format!("{}:{}", ip, port);
+
     /*
     req: 表示执行证书请求操作。
     -x509: 表示生成自签名的 X.509 证书。
@@ -49,21 +53,31 @@ pub async fn main() -> std::io::Result<()> {
     // 这行代码创建了一个 SSL/TLS 加密器，使用了中间级别的安全配置
     // mozilla_intermediate 是一个 SSL/TLS 安全配置的预定义配置之一
     // SslMethod::tls() 指定了 TLS 协议的版本,现在是 1.2版本
-    let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
+
+    info!("Start SSL configuration");
+    let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls())
+        .expect("Failed to execute function SSL builder");
     // 这行代码设置了私钥文件，"key.pem" 是私钥文件的路径
     // SslFiletype::PEM 表示私钥文件的格式为 PEM 格式。
     builder
         .set_private_key_file("key.pem", SslFiletype::PEM)
-        .unwrap();
+        .expect("Failed to execute builder set_private_key_file");
     // 这行代码设置了证书链文件，"cert.pem" 是证书链文件的路径
-    builder.set_certificate_chain_file("cert.pem").unwrap();
-
+    builder
+        .set_certificate_chain_file("cert.pem")
+        .expect("Failed to execute builder set_certificate_chain_file");
+    info!("End SSL configuration");
+    info!("Start HttpServer");
     HttpServer::new(|| {
         let cors = Cors::default()
             .allow_any_origin()
             .supports_credentials()
             .allowed_methods(vec!["GET", "POST"])
-            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT, http::header::CONTENT_TYPE])
+            .allowed_headers(vec![
+                http::header::AUTHORIZATION,
+                http::header::ACCEPT,
+                http::header::CONTENT_TYPE,
+            ])
             .max_age(3600);
 
         App::new()
@@ -77,15 +91,42 @@ pub async fn main() -> std::io::Result<()> {
                 web::scope("/api")
                     .service(get_recommend_post_total_numbers)
                     .service(get_recommend_posts_list)
+                    .service(get_follow_relationships)
                     .service(get_follow_posts_list)
                     .service(get_follow_post_total_numbers)
                     .service(get_search)
                     .service(get_cover)
+                    .service(get_image)
                     .service(get_post)
+                    .service(submit_cover)
+                    .service(submit_post)
+                    .service(delete_post)
                     .service(get_avatar)
                     .service(get_user)
                     .service(send_verification_code)
                     .service(verify_verification_code)
+                    .service(user_login)
+                    .service(get_userprofile_post_total_numbers)
+                    .service(get_userprofile_posts)
+                    .service(get_userprofile_user)
+                    .service(get_userprofile_totalnumbers_collect)
+                    .service(get_userprofile_collect_posts)
+                    .service(update_userprofile_username)
+                    .service(update_userprofile_avatar)
+                    .service(update_userprofile_avatar_url)
+                    .service(add_remove_follow)
+                    .service(get_user_comment)
+                    .service(submit_comment)
+                    .service(delete_comment)
+                    .service(get_like_collect)
+                    .service(add_like)
+                    .service(sub_like)
+                    .service(add_collect)
+                    .service(sub_collect)
+                    .service(submit_image)
+                    .service(token_get_userinfo)
+                    .service(send_forgot_password)
+                    .service(verify_forgot_password),
             )
             .service(
                 Files::new("/", "D:/Web_lesson/vue/myprogram-station/dist")
@@ -100,7 +141,7 @@ pub async fn main() -> std::io::Result<()> {
             .default_service(web::get().to(index))
     })
     .workers(8)
-    .bind_openssl(IP_PORT, builder)?
+    .bind_openssl(ip_port, builder)?
     .run()
     .await
 }

@@ -1,131 +1,125 @@
-use actix_web::HttpRequest;
-use chrono::prelude::*;
-use chrono::Duration;
-use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
+use actix_web::{post, HttpRequest, HttpResponse};
 use serde::{Deserialize, Serialize};
 
-use crate::database::*;
+use crate::{database::mysql::*, common::token::*};
 
-use self::mysql::MysqlPool;
-
-/// Our claims struct, it needs to derive `Serialize` and/or `Deserialize`
-#[derive(Debug, Serialize, Deserialize)]
-struct Claims {
+#[derive(Debug, Deserialize, Serialize, Clone)]
+struct User {
     id: u32,
-    user_email: String,
-    password: String,
-    exp: i64,
+    name: String,
+    avatar_url: String,
 }
 
-impl Claims {
-    pub fn new(id: u32, user_email: &str, password: &str) -> Self {
-        let now = Utc::now();
-        let exp = now + Duration::try_minutes(60).expect("Invalid minutes");
-        Self {
+#[post("/token_get_userinfo")]
+pub async fn token_get_userinfo(req: HttpRequest) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start token_get_userinfo function");
+    println!("token_get_userinfo");
+    if Token::verif_jwt(req.clone()).is_err() {
+        return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
+    }
+
+    // 通过 token 获得用户信息
+    let claims = match Token::token_to_claims(req) {
+        Ok(ok) => ok, 
+        Err(err) => {
+            log::error!("Error is Token verif_jwt");
+            log::error!(
+                "Error executing token_get_userinfo function token_to_claims: {:?}",
+                err
+            );
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
+        }
+    };
+
+    // 获取用户 id
+    let id = claims.get_id();
+
+    let my_pool = MysqlPool::instance();
+
+    // 查询用户的个人信息
+    let query = format!(
+        "SELECT id, name, avatar_url FROM user WHERE id = {}",
+        id
+    );
+    let user: Vec<User> = match my_pool.query_map(
+        query,
+        |(id, name, avatar_url): (u32, String, String)| User {
             id,
-            user_email: user_email.to_string(),
-            password: password.to_string(),
-            exp: exp.timestamp(),
+            name,
+            avatar_url,
+        },
+        &my_pool.read_only_txopts,
+    ) {
+        Ok(result) => result,
+        Err(err) => {
+            log::error!("Error token_get_userinfo query_map query: {:?}", err);
+            // eprintln!("get_user: Error query_map query: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
         }
-    }
+    };
 
-    pub fn verify(&self) -> Result<(), Box<dyn std::error::Error>> {
-        println!("Claims verify start");
-        let my_pool = MysqlPool::instance();
+    // 获取到用户数据
+    let User {
+        id,
+        name,
+        avatar_url,
+    } = user[0].clone();
 
-        let query = format!(
-            "
-            select user_id, email, password
-            from login 
-            where user_id = {}",
-            self.id
+    // 获取用户的粉丝数量
+    let query = format!(
+        "select follower_count, fans from user_stats where user_id = {}",
+        id
+    );
+    let user_stats: Vec<(u32, u32)> = match my_pool.exec(&query, &my_pool.read_only_txopts) {
+        Ok(result) => result,
+        Err(err) => {
+            // eprintln!("Error executing query: {:?}", err);
+            log::error!("Error executing token_get_userinfo function query {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
+        }
+    };
+
+    let avatar_url = if avatar_url.len() != 0 {
+        avatar_url
+    } else {
+        AVATAR_URL.to_string()
+    };
+
+    let token = Token::get_jwt(&claims);
+    if token.is_err() {
+        log::error!("Error token_get_userinfo Token get jwt: {:?}", token);
+        return Ok(
+            HttpResponse::InternalServerError().body(serde_json::to_string("服务器繁忙").unwrap())
         );
-
-        let users: Vec<(u32, String, String)> = match my_pool.exec(query, &my_pool.read_only_txopts)
-        {
-            Ok(result) => result,
-            Err(err) => {
-                eprintln!("{}", err);
-                return Err(err);
-            }
-        };
-
-        let user = users[0];
-
-        let now = Utc::now().timestamp();
-        if user.1 != self.user_email || user.2 != self.password || now > self.exp {
-            return Err(Box::new(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                "Failed to verify Token",
-            )));
-        }
-
-        println!("Claims verify end");
-        Ok(())
     }
-}
+    let token = token.unwrap();
 
-pub struct Token;
+    let login_info = UserInfomation {
+        id: id,
+        name: name,
+        avatar_url: avatar_url, // 默认头像路径
+        follower_count: user_stats[0].0,
+        fans: user_stats[0].1,
+        token: token,
+    };
 
-impl Token {
-    // 根据 id，邮箱，密码和时间生成 token
-    pub fn get_jwt(claims: &Claims) -> Result<String, Box<dyn std::error::Error>> {
-        let token = encode(
-            &Header::default(),
-            &claims,
-            &EncodingKey::from_secret("my name is zyl".as_ref()),
-        )?;
+    let response = serde_json::to_string(&login_info);
+    if response.is_err() {
+        log::error!("Error verify_verification_code serde_json: {:?}", response);
 
-        println!("get jwt{:?}", token);
-
-        Ok(token)
+        return Ok(
+            HttpResponse::InternalServerError().body(serde_json::to_string("服务器繁忙").unwrap())
+        );
     }
 
-    pub fn verif_jwt(req: HttpRequest) -> Result<(), Box<dyn std::error::Error>> {
-        // 获取请求头中的
-        let auth_header = req.headers().get("Authorization");
+    let response = response.unwrap();
 
-        // 取出token
-        let token = if let Some(auth_header_value) = auth_header {
-            if let Ok(auth_str) = auth_header_value.to_str() {
-                // 看看是不是 Bearer 开头的字符串
-                if auth_str.starts_with("Bearer ") {
-                    // 删除掉 "Bearer " 字符串
-                    auth_str.trim_start_matches("Bearer ").to_owned()
-                } else {
-                    return Err(Box::new(std::io::Error::new(
-                        std::io::ErrorKind::Other,
-                        "Failed to verify Token",
-                    )));
-                }
-            } else {
-                return Err(Box::new(std::io::Error::new(
-                    std::io::ErrorKind::Other,
-                    "Failed to verify Token",
-                )));
-            }
-        } else {
-            return Err(Box::new(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                "Failed to verify Token",
-            )));
-        };
-
-        // 结构出我们的 token 数据
-        let token = decode::<Claims>(
-            &token,
-            &DecodingKey::from_secret("my name is zyl".as_ref()),
-            &Validation::default(),
-        )?;
-
-        let user_info = token.claims;
-        if user_info.verify().is_err() {
-            return Err(Box::new(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                "Failed to verify Token",
-            )));
-        }
-
-        Ok(())
-    }
+    log::debug!("End token_get_userinfo function");
+    Ok(HttpResponse::Ok().body(response))
 }

@@ -53,6 +53,10 @@ $(k_1 + k * (a_2 / gcd)) * a_1 - (k_2 + k * (a_1 / gcd)) * a2 == gcd$
 
 $ x = k * a_0 + m_0$
 # 可以看出与之前的类似，所以我们只要重复这个操作$ n - 1 $次就可以了！！
+
+![QQ图片20221104155834.gif](https://cdn.acwing.com/media/article/image/2022/11/04/72502_86539e525c-QQ图片20221104155834.gif)
+![icons8-rust-24.png](https://cdn.acwing.com/media/article/image/2024/01/04/72502_91273138aa-icons8-rust-24.png)
+
 ```
 #include<iostream>
 using namespace std;

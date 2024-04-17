@@ -10,15 +10,19 @@ use std::sync::{Arc, Mutex};
 
 use crate::common::config::*;
 
+// 定义默认头像和文章默认封面
+pub const AVATAR_URL: &str = "https://127.0.0.1:8082/api/avatar/0";
+// const COVER_URL: &str = "";
+
 // 返回用户的登录信息
 #[derive(Debug, Deserialize, Serialize)]
-pub struct LoginInfomation {
-    id: u32,
-    name: String,
-    avatar_url: String,
-    follower_count: u32,
-    fans: u32,
-    token: String,
+pub struct UserInfomation {
+    pub id: u32,
+    pub name: String,
+    pub avatar_url: String,
+    pub follower_count: u32,
+    pub fans: u32,
+    pub token: String,
 }
 
 // 返回帖子的结构体
@@ -56,7 +60,7 @@ impl MysqlPool {
         let pool = Pool::builder()
             .max_size(15)
             .build(manager)
-            .expect("Failed Pool::builder");
+            .expect("Database connection pool builder failed");
 
         let read_only_txopts = TxOpts::default()
             .set_with_consistent_snapshot(true) // 开启事务快照
@@ -109,17 +113,20 @@ impl MysqlPool {
         // 开启事务， 只允许读操作
         let mut transaction = connection.start_transaction(*txopts)?;
 
-        println!("{:?}", query);
+        // println!("{:?}", query);
+        log::info!("my_pool exec function execution query: {:?}", query);
 
         // 匹配正确和错误
         match transaction.exec(query, ()) {
             Ok(result) => {
                 // 提交事务
                 transaction.commit()?;
+                log::info!("my_pool exec transaction has been commit");
                 return Ok(result);
             }
             Err(err) => {
                 // 这里好像回滚和不回滚都是一样的
+                log::error!("my_pool exec function encountered an error: {:?}", err);
                 transaction.rollback()?;
                 return Err(Box::new(err));
             }
@@ -134,7 +141,7 @@ impl MysqlPool {
         txopts: &TxOpts,
     ) -> Result<Vec<U>, Box<dyn std::error::Error + '_>>
     where
-        Q: AsRef<str>,
+        Q: AsRef<str> + std::fmt::Debug,
         T: FromRow,
         F: FnMut(T) -> U,
     {
@@ -144,21 +151,54 @@ impl MysqlPool {
         // 开启事务， 允许读写操作
         let mut transaction = connection.start_transaction(*txopts)?;
 
+        log::info!("my_pool query_map function execution query: {:?}", query);
         // 匹配正确和错误
         match transaction.query_map(query, f) {
             Ok(result) => {
                 // 提交事务
                 transaction.commit()?;
+                log::info!("my_pool query_map transaction has been commit");
                 Ok(result)
             }
             Err(err) => {
                 // 这里好像回滚和不回滚都是一样的
+                log::error!("my_pool query_map function encountered an error: {:?}", err);
                 transaction.rollback()?;
                 Err(Box::new(err))
             }
         }
     }
 
+    pub fn exec_drop<S>(
+        &self,
+        querys: Vec<S>,
+        txopts: &TxOpts,
+    ) -> Result<(), Box<dyn std::error::Error + '_>>
+    where
+        S: AsStatement + std::fmt::Debug,
+    {
+        let mut connection = self.get_connection()?;
+
+        // log::info!("my_pool exec_drop function execution query: {:?}", querys);
+        let mut transaction = connection.start_transaction(*txopts)?;
+
+        for query in querys {
+            match transaction.exec_drop(query, ()) {
+                Ok(_) => {
+                    log::debug!("my_pool exec_drop function execution query successful");
+                }
+                Err(err) => {
+                    log::error!("my_pool exec_drop function encountered an error: {:?}", err);
+                    transaction.rollback()?;
+                    return Err(Box::new(err));
+                }
+            };
+        }
+        transaction.commit()?;
+        Ok(())
+    }
+
+    // 执行插入操作
     pub fn query_drop(
         &self,
         query: &str,

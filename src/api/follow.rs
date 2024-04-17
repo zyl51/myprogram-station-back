@@ -1,42 +1,117 @@
-use actix_web::{get, web, HttpResponse};
-use serde::Serialize;
+use actix_web::{get, web, HttpRequest, HttpResponse};
+use serde::{Deserialize, Serialize};
 use std::fs; // 将 json 字符串解析为结构体
 
-use crate::database::mysql::*;
+use crate::{database::mysql::*, common::token::*};
+
+#[derive(Debug, Serialize, Deserialize)]
+struct UserRelationships {
+    follower_id: u32,
+    following_id: u32,
+}
+
+// 是否有关注关系
+#[get("/follow/relationships")]
+pub async fn get_follow_relationships(
+    req: HttpRequest,
+    info: web::Query<UserRelationships>,
+) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start get_follow_relationships");
+    println!("get_follow_relationships");
+    if Token::verif_jwt(req).is_err() {
+        return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
+    }
+    // println!("get_follow_relationships");
+
+    let UserRelationships {
+        follower_id,
+        following_id,
+    } = info.into_inner();
+
+    let query = format!(
+        "
+        select count(*) 
+        from follow
+        where follower_id = {} and following_id = {};",
+        follower_id, following_id
+    );
+
+    let my_pool = MysqlPool::instance();
+
+    let numbers: Vec<(u32,)> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error get_follow_relationships my_pool exec: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
+        }
+    };
+
+    // println!("{}", numbers.len());
+    if numbers[0].0 == 0 {
+        let flag = false;
+        return Ok(HttpResponse::Ok().body(serde_json::to_string(&flag).unwrap()));
+    }
+
+    log::debug!("End get_follow_relationships");
+    let flag = true;
+    Ok(HttpResponse::Ok().body(serde_json::to_string(&flag).unwrap()))
+}
 
 #[derive(Debug, Serialize)]
 struct Number {
     number: u32,
 }
 
+// 关注列表的总数量
 #[get("/follow/totalnumbers/{user_id}")]
 pub async fn get_follow_post_total_numbers(
+    req: HttpRequest,
     user_id: web::Path<u32>,
 ) -> actix_web::Result<HttpResponse> {
+    log::info!("Start executing get_follow_post_total_numbers function");
+    // println!("get_follow_post_total_numbers");
+    if Token::verif_jwt(req).is_err() {
+        return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
+    }
+    // println!("get_follow_post_total_numbers");
     let user_id = *user_id;
     // println!("{}", user_id);
     // 获取线程池，这个线程池为单例模式
     let my_pool = MysqlPool::instance();
 
     // 事务查询帖子总数量的数据
-    let query = format!("SELECT COUNT(*) FROM post where user_id = {};", user_id);
-    let numbers: Vec<(u32, )> = match my_pool.exec(&query, &my_pool.read_only_txopts) {
+    let query = format!("SELECT COUNT(*) FROM follow where follower_id = {};", user_id);
+
+    log::info!("Executing MySQL statement: {:?}", query);
+    let numbers: Vec<(u32,)> = match my_pool.exec(&query, &my_pool.read_only_txopts) {
         Ok(result) => result,
         Err(err) => {
-            eprintln!("Error executing query: {:?}", err);
-            return Err(actix_web::error::ErrorInternalServerError("Internal Server Error"));
+            // eprintln!("Error executing query: {:?}", err);
+            log::error!(
+                "Error executing get_follow_post_total_numbers function query: {:?}",
+                err
+            );
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
         }
     };
-    
+
     let number = numbers[0].0;
 
-    let json_response = serde_json::to_string(&Number { number })
-        .map_err(|err| {
-            eprintln!("Error serializing response: {:?}", err);
-            actix_web::error::ErrorInternalServerError("Error serializing response")
-        })?;
+    let json_response = serde_json::to_string(&Number { number }).map_err(|err| {
+        log::error!(
+            "Error get_follow_post_total_numbers serializing response: {:?}",
+            err
+        );
+        actix_web::error::ErrorInternalServerError("Error serializing response")
+    })?;
 
-    Ok(HttpResponse::Ok().content_type("application/json").body(json_response))
+    Ok(HttpResponse::Ok()
+        .content_type("application/json")
+        .body(json_response))
 }
 
 // 用于存储客户端寻求的用户 id 和 page 页数
@@ -49,8 +124,13 @@ struct FollowPost {
 // 获取自己关注的帖子列表
 #[get("/follow/postlist")]
 pub async fn get_follow_posts_list(
+    req: HttpRequest,
     info: web::Query<FollowPost>,
 ) -> actix_web::Result<HttpResponse> {
+    log::info!("Start get_follow_posts_list function");
+    if Token::verif_jwt(req).is_err() {
+        return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
+    }
     let FollowPost { user_id, page } = info.into_inner();
     // print!("{}, {} ", user_id, page);
 
@@ -58,42 +138,61 @@ pub async fn get_follow_posts_list(
     let my_pool = MysqlPool::instance();
 
     let start = (page - 1) * 10;
-    let query = format!("
+    let query = format!(
+        "
             SELECT post.id, post.title, post.release_time, post.cover_url, 
                 post.content_url, post.user_id, post.user_name FROM post
             JOIN follow ON post.user_id = follow.following_id 
             WHERE follow.follower_id = {}
             ORDER BY post.release_time DESC
             LIMIT {}, 10;
-    ", user_id, start);
-
-    // let posts: Vec<String> = transaction.exec(query, ()).unwrap();
+    ",
+        user_id, start
+    );
 
     // 将查询的值映射到数结构体中
     let posts: Vec<Post> = match my_pool.query_map(
         query,
-        |(id, title, release_time, cover_url, content_url, user_id, user_name)
-        : (u32, String, String, String, String, u32, String)| {
-            let content = fs::read_to_string(content_url)
-                .expect("get_follow_posts_list: Failed fs::read_to_string content_url");
-            Post { id, title, release_time, cover_url, content, user_id, user_name }
+        |(id, title, release_time, cover_url, content_url, user_id, user_name): (
+            u32,
+            String,
+            String,
+            String,
+            String,
+            u32,
+            String,
+        )| {
+            let content =
+                fs::read_to_string(content_url).expect("Error get_follow_posts_list: read content");
+
+            Post {
+                id,
+                title,
+                release_time,
+                cover_url,
+                content,
+                user_id,
+                user_name,
+            }
         },
         &my_pool.read_only_txopts,
-    ) 
-    {
+    ) {
         Ok(result) => result,
         Err(err) => {
-            eprintln!("Error executing query: {:?}", err);
-            return Err(actix_web::error::ErrorInternalServerError("Internal Server Error"));
+            // eprintln!("Error get_follow_posts_list executing query: {:?}", err);
+            log::error!("get_follow_posts_list executing query: {:?}", err);
+
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
         }
     };
 
+    let post_jsons = serde_json::to_string(&posts).map_err(|err| {
+        log::error!("Error serializing response: {:?}", err);
+        actix_web::error::ErrorInternalServerError("Error serializing response")
+    })?;
 
-    let post_jsons = serde_json::to_string(&posts)
-        .map_err(|err| {
-            eprintln!("Error serializing response: {:?}", err);
-            actix_web::error::ErrorInternalServerError("Error serializing response")
-        })?;
-
+    log::info!("End get_follow_posts_list function");
     Ok(HttpResponse::Ok().body(post_jsons))
 }

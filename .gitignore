@@ -1,4 +1,5 @@
 /target
+/static
 cert.pem
 key.pem
 config.toml
