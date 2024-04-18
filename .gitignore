@@ -1,5 +1,6 @@
 /target
 /static
+/logfile
 cert.pem
 key.pem
 config.toml
