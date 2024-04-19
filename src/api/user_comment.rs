@@ -113,6 +113,29 @@ pub async fn submit_comment(req: HttpRequest, info: web::Json<SubmitComment>) ->
 
     // 插入数据
     let my_pool = MysqlPool::instance();
+
+    // 查询帖对应的作者
+    let query = format!("
+        select user_id
+        from post
+        where id = {};
+    ", post_id);
+
+    let recver_id: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error add_collect my_pool.exec: {:?}", err);
+            return Ok(HttpResponse::InternalServerError().body("Internal Server Error"));
+        }
+    };
+
+    if recver_id.len() == 0 {
+        return Ok(HttpResponse::BadRequest().body("Not this post"));
+    }
+
+    let recver_id = recver_id[0];
+
+    // 插入评论
     let query = format!(
         "
         INSERT INTO
@@ -125,6 +148,23 @@ pub async fn submit_comment(req: HttpRequest, info: web::Json<SubmitComment>) ->
     ",
         post_id, user_id, username, avatar_url, release_time, comment
     );
+
+    let query2 = format!("
+        insert into message
+            (sender_id, recver_id, post_id, status)
+        VALUES
+            ({}, {}, {}, 3);
+    ", user_id, recver_id, post_id);
+
+    match my_pool.exec_drop(vec![query2], &my_pool.read_write_txopts) {
+        Ok(_) => {
+            log::info!("submit comment executing exec_drop successful");
+        }
+        Err(err) => {
+            log::error!("Error submit comment executing exec_drop: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
 
     let comment_id = match my_pool.query_drop(&query, &my_pool.read_write_txopts) {
         Ok(ok) => {

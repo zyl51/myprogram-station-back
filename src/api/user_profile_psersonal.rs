@@ -64,6 +64,8 @@ pub async fn update_userprofile_username(
     Ok(HttpResponse::Ok().body(serde_json::to_string(&username).unwrap()))
 }
 
+
+
 // 更换头像
 #[post("/userprofile/update_avatar/{user_id}")]
 pub async fn update_userprofile_avatar(

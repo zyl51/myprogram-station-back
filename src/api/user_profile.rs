@@ -1,6 +1,7 @@
-use actix_web::{get, web, HttpRequest, HttpResponse};
+use actix_web::{get, post, web, HttpRequest, HttpResponse};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
+use std::collections::HashMap;
 use std::fs; // 将 json 字符串解析为结构体
 
 use crate::{common::token::Token, database::mysql::*};
@@ -140,17 +141,23 @@ pub async fn get_userprofile_post_total_numbers(
 
 // 获取用户收藏的总数量
 #[get("/userprofile/totalnumbers_collect/{user_id}")]
-pub async fn get_userprofile_totalnumbers_collect(req: HttpRequest, user_id: web::Path<u32>) -> actix_web::Result<HttpResponse> {
+pub async fn get_userprofile_totalnumbers_collect(
+    req: HttpRequest,
+    user_id: web::Path<u32>,
+) -> actix_web::Result<HttpResponse> {
     log::debug!("Start get_userprofile_totalnumbers_collect function");
     println!("get_userprofile_totalnumbers_collect");
-    
+
     if Token::verif_jwt(req).is_err() {
         return Ok(HttpResponse::BadRequest().body("Token is failed"));
     }
 
     let user_id = *user_id;
 
-    let query = format!("select count(*) from collect_post where user_id = {};", user_id);
+    let query = format!(
+        "select count(*) from collect_post where user_id = {};",
+        user_id
+    );
 
     let my_pool = MysqlPool::instance();
     let number: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
@@ -189,7 +196,10 @@ pub async fn get_userprofile_collect_posts(
     let start = (page - 1) * 10;
 
     let my_pool = MysqlPool::instance();
-    let query = format!("select post_id from collect_post where user_id = {};", user_id);
+    let query = format!(
+        "select post_id from collect_post where user_id = {};",
+        user_id
+    );
     let post_ids: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
         Ok(ok) => ok,
         Err(err) => {
@@ -323,4 +333,273 @@ pub async fn get_userprofile_posts(
 
     log::info!("End get_userprofile_posts function");
     Ok(HttpResponse::Ok().body(post_jsons))
+}
+
+#[derive(Debug, Serialize)]
+struct Message {
+    id: u32,
+    sender_id: u32,
+    recver_id: u32,
+    sender_name: String,
+    sender_avatar_url: String,
+    post_id: u32,
+    title: String,
+    status: u32,
+}
+
+struct MyMessage {
+    pub id: u32,
+    pub sender_id: u32,
+    pub recver_id: u32,
+    pub post_id: u32,
+    pub status: u32,
+}
+
+struct MyUser {
+    user_id: u32,
+    user_name: String,
+    avatar_url: String,
+}
+
+struct MyPost {
+    post_id: u32,
+    title: String,
+}
+
+// 获取用户的消息
+#[get("/userprofile/message/{user_id}")]
+pub async fn get_message(
+    req: HttpRequest,
+    user_id: web::Path<u32>,
+) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start get_message function");
+    println!("--- get_message");
+
+    let user_id = user_id.into_inner();
+    // token 验证
+    let user_info = match Token::token_to_claims(req) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error update_userprofile_avatar is token_to_claims");
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    // token 验证
+    if user_info.get_id() != user_id || user_info.verify().is_err() {
+        log::info!("user_info.get_id() != user_id || user_info.verify().is_err()");
+        return Ok(HttpResponse::BadRequest().body("Token verif Farild"));
+    }
+
+    // 查询用户的信息
+    let query = format!(
+        "
+        select id, sender_id, recver_id, post_id, status
+        from message 
+        where recver_id = {}
+        order by id desc;
+    ",
+        user_id
+    );
+
+    let my_pool = MysqlPool::instance();
+    let my_messages: Vec<MyMessage> = match my_pool.query_map(
+        query,
+        |(id, sender_id, recver_id, post_id, status): (u32, u32, u32, u32, u32)| MyMessage {
+            id,
+            sender_id,
+            recver_id,
+            post_id,
+            status,
+        },
+        &my_pool.read_only_txopts,
+    ) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error get message err:{:?}", err);
+            return Ok(HttpResponse::InternalServerError().body("Internal Server Error"));
+        }
+    };
+
+    // 查询用户名
+    let usernames_params = my_messages
+        .iter()
+        .map(|message| message.sender_id.to_string())
+        .collect::<Vec<String>>()
+        .join(",");
+
+    // 构建查询语句
+    let query = format!(
+        "
+        select id, name, avatar_url
+        from user
+        where id in ({});
+    ",
+        usernames_params
+    );
+
+    // 通过 user_id 和 user_id 和 user_name 查出来
+    let users: Vec<MyUser> = match my_pool.query_map(
+        query,
+        |(user_id, user_name, avatar_url): (u32, String, String)| MyUser {
+            user_id,
+            user_name,
+            avatar_url,
+        },
+        &my_pool.read_only_txopts,
+    ) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error get message executing query: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
+        }
+    };
+
+    // 将用户数据映射到 HashMap 中
+    let user_map: HashMap<u32, (String, String)> = users
+        .into_iter()
+        .map(|user| (user.user_id, (user.user_name, user.avatar_url)))
+        .collect();
+
+    let titles_params = my_messages
+        .iter()
+        .map(|message| message.post_id.to_string())
+        .collect::<Vec<String>>()
+        .join(",");
+
+    // 构建查询语句
+    let query = format!(
+        "
+        select id, title
+        from post
+        where id in ({});
+    ",
+        titles_params
+    );
+
+    // 通过 user_id 和 user_id 和 user_name 查出来
+    let posts: Vec<MyPost> = match my_pool.query_map(
+        query,
+        |(post_id, title): (u32, String)| MyPost { post_id, title },
+        &my_pool.read_only_txopts,
+    ) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error get message executing query: {:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(
+                "Internal Server Error",
+            ));
+        }
+    };
+
+    // 将帖子数据映射到 HashMap 中
+    let post_map: HashMap<u32, String> = posts
+        .into_iter()
+        .map(|post| (post.post_id, post.title))
+        .collect();
+
+    // 合并帖子和用户数据
+    let result: Vec<Message> = my_messages
+        .into_iter()
+        .map(|message| Message {
+            id: message.id,
+            sender_id: message.sender_id,
+            recver_id: message.recver_id,
+            sender_name: user_map
+                .get(&message.sender_id)
+                .cloned()
+                .unwrap_or_else(|| ("编程驿站一份子".to_string(), "".to_string()))
+                .0,
+            sender_avatar_url: user_map
+                .get(&message.sender_id)
+                .cloned()
+                .unwrap_or_else(|| ("编程驿站一份子".to_string(), "".to_string()))
+                .1,
+            post_id: message.post_id,
+            title: post_map
+                .get(&message.post_id)
+                .cloned()
+                .unwrap_or_else(|| "编程驿站的小文章".to_string()),
+            status: message.status,
+        })
+        .collect();
+
+    let message_jsons = serde_json::to_string(&result).map_err(|err| {
+        // eprintln!("Error serializing response: {:?}", err);
+        log::error!("Error get message serializing response: {:?}", err);
+        actix_web::error::ErrorInternalServerError("Error serializing response")
+    })?;
+
+    log::debug!("End get_message function");
+    Ok(HttpResponse::Ok().body(message_jsons))
+}
+
+// 删除帖子
+#[post("/userprofile/update_message/{message_id}")]
+pub async fn update_message_read(
+    req: HttpRequest,
+    message_id: web::Path<u32>,
+) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start update_message_read function");
+    println!("delete message");
+
+    let message_id = message_id.into_inner();
+
+    let my_pool = MysqlPool::instance();
+
+    // 查询用户 id
+    let query = format!("select recver_id from message where id = {}", message_id);
+
+    let user_id: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("update message read: {:?}", err);
+            return Ok(HttpResponse::InternalServerError().body("Internal Server Error"));
+        }
+    };
+
+    // 没有此消息
+    if user_id.len() == 0 {
+        return Ok(HttpResponse::BadRequest().body("Error request"));
+    }
+
+    // 获取用户 id
+    let user_id = user_id[0];
+
+    // token 验证
+    let user_info = match Token::token_to_claims(req) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error update_message_read is token_to_claims");
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    // token 验证
+    if user_info.get_id() != user_id || user_info.verify().is_err() {
+        log::info!("user_info.get_id() != user_id || user_info.verify().is_err()");
+        return Ok(HttpResponse::BadRequest().body("Token verif Farild"));
+    }
+
+    let query = format!(
+        "
+        delete from message
+        where id = {};
+    ",
+        message_id
+    );
+
+    match my_pool.exec_drop(vec![query], &my_pool.read_write_txopts) {
+        Ok(_) => {
+            log::info!("update message my_pool.exec_drop");
+        }
+        Err(err) => {
+            log::error!("Error update message read: {:?}", err);
+        }
+    };
+
+    log::debug!("End update_message_read function");
+    Ok(HttpResponse::Ok().body(serde_json::to_string("删除成功").unwrap()))
 }

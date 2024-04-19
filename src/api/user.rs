@@ -1,12 +1,12 @@
-use actix_web::{get, post, web, HttpResponse, HttpRequest};
-use serde::{Deserialize, Serialize};
 use actix_multipart::Multipart;
+use actix_web::{get, post, web, HttpRequest, HttpResponse};
 use futures::{StreamExt, TryStreamExt};
-use std::io::Write;
+use serde::{Deserialize, Serialize};
 use std::fs; // 将 json 字符串解析为结构体
+use std::io::Write;
 use uuid::Uuid;
 
-use crate::{database::mysql::*, common::token::*, common::config::*};
+use crate::{common::config::*, common::token::*, database::mysql::*};
 
 // const IP_PORT: &str = "127.0.0.1:8082";
 
@@ -37,7 +37,10 @@ pub async fn get_avatar(user_id: web::Path<String>) -> actix_web::Result<HttpRes
 
 // 上传帖子封面的函数
 #[post("/avatar/submit_avatar")]
-async fn submit_avatar(req: HttpRequest, mut payload: Multipart) -> actix_web::Result<HttpResponse> {
+async fn submit_avatar(
+    req: HttpRequest,
+    mut payload: Multipart,
+) -> actix_web::Result<HttpResponse> {
     log::debug!("Start submit_avatar function");
     println!("submit_avatar");
     if Token::verif_jwt(req).is_err() {
@@ -151,4 +154,53 @@ pub async fn get_user(user_id: web::Path<u32>) -> actix_web::Result<HttpResponse
 
     log::info!("End get_user function");
     Ok(HttpResponse::Ok().body(post_jsons))
+}
+
+#[get("/user/admin/{user_id}")]
+pub async fn get_is_admin(
+    req: HttpRequest,
+    user_id: web::Path<u32>,
+) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start get_is_admin function");
+    // println!("---- get_is_admin");
+
+    // 获取用户的信息
+    let user_info = match Token::token_to_claims(req) {
+        Ok(ok) => ok, 
+        Err(err) => {
+            log::error!("Error get_is_admin is token_to_claims");
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    // 获取用户 id
+    let user_id = *user_id;
+
+    // 进行 token 验证
+    if user_id != user_info.get_id() || user_info.verify().is_err() {
+        log::info!("user_info.get_id() != user_id || user_info.verify().is_err()");
+        return Ok(HttpResponse::BadRequest().body("Token verif Farild"));
+    }
+
+    // 查询是否是管理员
+    let my_pool = MysqlPool::instance();
+
+    let query = format!("select count(*) from admin where user_id = {};", user_id);
+    let admin: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+        Ok(ok) => ok,
+        Err(err) => {
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    // println!("admin len: {}, {}", admin.len(), admin[0]);
+
+    let flag = if admin[0] == 0 {
+        false
+    } else {
+        true
+    };
+
+    log::debug!("End get_is_admin function");
+    Ok(HttpResponse::Ok().body(serde_json::to_string(&flag).unwrap()))
 }
