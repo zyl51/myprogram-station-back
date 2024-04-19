@@ -62,6 +62,13 @@ pub async fn user_login(login: web::Json<Login>) -> actix_web::Result<HttpRespon
 
     // 获取我们的 token 数据
     let claims = Claims::new(user_id, &email, &password);
+
+    if claims.is_ban().is_err() {
+        return Ok(
+            HttpResponse::InternalServerError().body(serde_json::to_string("用户已被封禁").unwrap())
+        );
+    }
+
     log::debug!("Start user_login function executing Token::get_jwt(&claims)");
     let token = Token::get_jwt(&claims);
     if token.is_err() {

@@ -40,27 +40,36 @@ impl Claims {
 
         let query = format!(
             "
-            select user_id, email, password
+            select user_id, email, password, is_ban
             from login 
             where user_id = {}",
             self.id
         );
 
-        let users: Vec<(u32, String, String)> = match my_pool.exec(query, &my_pool.read_only_txopts)
+        let users: Vec<(u32, String, String, bool)> = match my_pool.exec(query, &my_pool.read_only_txopts)
         {
             Ok(result) => result,
             Err(err) => {
-                // eprintln!("{}", err);
-                // log::error!(
-                //     "Failed executing function Claims::verify of my_pool.exec: {}",
-                //     err
-                // );
                 log::error!("Error Claims verif is : {:?}", err);
                 return Err(err);
             }
         };
 
+        if users.len() == 0 {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "user does not exist",
+            )));
+        }
+
         let user = &users[0];
+
+        if user.3 == true {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "user banned",
+            )));
+        }
 
         println!("{}, {}, {}", user.0, user.1, user.2);
 
@@ -73,6 +82,83 @@ impl Claims {
         }
 
         log::info!("End executing Claims::verify");
+        Ok(())
+    }
+
+    pub fn is_ban(&self) -> Result<(), Box<dyn std::error::Error>> {
+        log::debug!("Start Claims: is_ban function");
+
+        let my_pool = MysqlPool::instance();
+
+        let query = format!(
+            "
+            select is_ban
+            from login 
+            where user_id = {}",
+            self.id
+        );
+
+        let is_ban: Vec<bool> = match my_pool.exec(query, &my_pool.read_only_txopts)
+        {
+            Ok(result) => result,
+            Err(err) => {
+                log::error!("Error Claims is_ban is : {:?}", err);
+                return Err(err);
+            }
+        };
+
+        // 不存在该用户
+        if is_ban.len() == 0 {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "user does not exist",
+            )));
+        }
+
+        let is_ban = is_ban[0];
+
+        // 如果用户被封禁
+        if is_ban == true {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "user banned",
+            )));
+        }
+        
+        log::debug!("End Claims: is_ban function");
+        Ok(())
+    }
+
+    pub fn is_admin(&self) -> Result<(), Box<dyn std::error::Error>> {
+        log::debug!("Start Claims: is_admin function");
+
+        let my_pool = MysqlPool::instance();
+        let query = format!("
+            select user_id
+            from admin
+            where user_id = {};
+        ", self.id);
+
+        let admin: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+            Ok(ok) => ok,
+            Err(err) => {
+                log::error!("Calims: is_admin executing my_pool.exec, err:{:?}", err);
+                return Err(Box::new(std::io::Error::new(
+                    std::io::ErrorKind::Other,
+                    "Server Error",
+                )));
+            }
+        };
+
+        // 不是管理员
+        if admin.len() == 0 {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "Not is admin",
+            )));
+        }
+
+        log::debug!("End Claims: is_admin function");
         Ok(())
     }
 }

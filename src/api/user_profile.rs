@@ -335,6 +335,54 @@ pub async fn get_userprofile_posts(
     Ok(HttpResponse::Ok().body(post_jsons))
 }
 
+
+
+// 获取用户的消息数量
+#[get("/userprofile/message_total/{user_id}")]
+pub async fn get_message_total(
+    req: HttpRequest,
+    user_id: web::Path<u32>,
+) -> actix_web::Result<HttpResponse> {
+    log::debug!("Start get_message_total function");
+    // println!("--- get_message_total");
+
+    let user_id = user_id.into_inner();
+    // token 验证
+    let user_info = match Token::token_to_claims(req) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error update_userprofile_avatar is token_to_claims");
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    // token 验证
+    if user_info.get_id() != user_id || user_info.verify().is_err() {
+        log::info!("user_info.get_id() != user_id || user_info.verify().is_err()");
+        return Ok(HttpResponse::BadRequest().body("Token verif Farild"));
+    }
+
+    // 查询用户的数量
+    let query = format!("
+        select count(*)
+        from message 
+        where recver_id = {};
+    ", user_id);
+
+    let my_pool = MysqlPool::instance();
+
+    let numbers: Vec<u32> = match my_pool.exec(query, &my_pool.read_only_txopts) {
+        Ok(ok) => ok,
+        Err(err) => {
+            log::error!("Error get message total, err:{:?}", err);
+            return Err(actix_web::error::ErrorInternalServerError(err));
+        }
+    };
+
+    log::debug!("End get_message_total function");
+    Ok(HttpResponse::Ok().body(serde_json::to_string(&numbers[0]).unwrap()))
+}
+
 #[derive(Debug, Serialize)]
 struct Message {
     id: u32,
@@ -347,6 +395,7 @@ struct Message {
     status: u32,
 }
 
+#[derive(Debug, Serialize)]
 struct MyMessage {
     pub id: u32,
     pub sender_id: u32,
@@ -420,6 +469,10 @@ pub async fn get_message(
             return Ok(HttpResponse::InternalServerError().body("Internal Server Error"));
         }
     };
+
+    if my_messages.len() == 0 {
+        return Ok(HttpResponse::Ok().body(serde_json::to_string(&my_messages).unwrap()))
+    }
 
     // 查询用户名
     let usernames_params = my_messages
@@ -536,7 +589,7 @@ pub async fn get_message(
     Ok(HttpResponse::Ok().body(message_jsons))
 }
 
-// 删除帖子
+// 删除消息
 #[post("/userprofile/update_message/{message_id}")]
 pub async fn update_message_read(
     req: HttpRequest,

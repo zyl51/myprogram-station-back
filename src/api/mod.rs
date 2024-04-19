@@ -13,3 +13,5 @@ pub mod markdown;
 pub mod token;
 pub mod forgot_password;
 pub mod user_profile_psersonal;
+pub mod report;
+pub mod user_management;

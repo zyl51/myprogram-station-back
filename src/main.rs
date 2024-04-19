@@ -14,7 +14,7 @@ use common::config::*;
 use api::{
     follow::*, login::*, post::*, recommend::*, register::*, search::*, user::*, user_profile::*,
     user_stats::*, user_comment::*, like_collect::*, markdown::*, token::*, forgot_password::*,
-    user_profile_psersonal::*,
+    user_profile_psersonal::*, report::*, user_management::*,
 };
 
 async fn index() -> HttpResponse {
@@ -112,6 +112,7 @@ pub async fn main() -> std::io::Result<()> {
                     .service(get_userprofile_user)
                     .service(get_userprofile_totalnumbers_collect)
                     .service(get_userprofile_collect_posts)
+                    .service(get_message_total)
                     .service(get_message)
                     .service(update_message_read)
                     .service(update_userprofile_username)
@@ -129,7 +130,14 @@ pub async fn main() -> std::io::Result<()> {
                     .service(submit_image)
                     .service(token_get_userinfo)
                     .service(send_forgot_password)
-                    .service(verify_forgot_password),
+                    .service(verify_forgot_password)
+                    .service(submit_report)
+                    .service(get_report_total)
+                    .service(get_report)
+                    .service(delete_report)
+                    .service(get_user_management_total)
+                    .service(get_user_management_list)
+                    .service(ban_user),
             )
             .service(
                 Files::new("/", "D:/Web_lesson/vue/myprogram-station/dist")

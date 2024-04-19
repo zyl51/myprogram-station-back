@@ -117,7 +117,7 @@ pub async fn add_like(req: HttpRequest, info: web::Json<LikeCollect>) -> actix_w
     ", post_id);
 
     let query3 = format!("
-        insert into message
+        insert IGNORE into message
             (sender_id, recver_id, post_id, status)
         VALUES
             ({}, {}, {}, 1);
@@ -226,7 +226,7 @@ pub async fn add_collect(req: HttpRequest, info: web::Json<LikeCollect>) -> acti
     ", post_id);
 
     let query3 = format!("
-        insert into message
+        insert IGNORE into message
             (sender_id, recver_id, post_id, status)
         VALUES
             ({}, {}, {}, 2);
