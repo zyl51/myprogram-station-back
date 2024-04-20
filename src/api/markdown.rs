@@ -66,11 +66,11 @@ fn convert_path_to_url(path: &str) -> String {
 
 // 获取图片
 #[get("/image/{uu_id}")]
-pub async fn get_image(req: HttpRequest, uu_id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+pub async fn get_image(uu_id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     log::info!("Start get_image function");
-    if Token::verif_jwt(req).is_err() {
-        return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
-    }
+    // if Token::verif_jwt(req).is_err() {
+    //     return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
+    // }
     // println!("get_image");
     let uu_id = (*uu_id).clone();
     let image_path = format!("./static/image/image-{}.jpg", uu_id);

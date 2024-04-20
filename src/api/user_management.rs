@@ -1,5 +1,5 @@
 use actix_web::{get, post, web, HttpRequest, HttpResponse};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 use std::collections::HashMap;
 
 use crate::{common::token::*, database::mysql::*};
