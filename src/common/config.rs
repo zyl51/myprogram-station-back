@@ -6,6 +6,7 @@ use toml;
 pub struct ServerConfig {
     pub host: String,
     pub port: u32,
+    pub thread_numbers: u32,
 }
 
 #[derive(Debug)]
@@ -51,6 +52,7 @@ impl Config {
                 .unwrap_or("127.0.0.1")
                 .to_string(),
             port: config["server"]["port"].as_integer().unwrap_or(8080) as u32,
+            thread_numbers: config["server"]["thread_numbers"].as_integer().unwrap_or(80) as u32,
         };
 
         // 解析 MySQL 配置

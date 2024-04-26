@@ -99,7 +99,7 @@ pub async fn get_recommend_posts_list(page: web::Path<u32>) -> actix_web::Result
             u32,
         )| {
             let content = fs::read_to_string(content_url)
-                .expect("get_follow_posts_list: Failed fs::read_to_string content_url");
+                .expect("get_recommend_posts_list: Failed fs::read_to_string content_url");
             MyPost {
                 id,
                 title,

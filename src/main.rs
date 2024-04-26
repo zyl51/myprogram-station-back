@@ -14,7 +14,7 @@ use common::config::*;
 use api::{
     follow::*, login::*, post::*, recommend::*, register::*, search::*, user::*, user_profile::*,
     user_stats::*, user_comment::*, like_collect::*, markdown::*, token::*, forgot_password::*,
-    user_profile_psersonal::*, report::*, user_management::*,
+    user_profile_psersonal::*, report::*, user_management::*, post_management::*, label::*,
 };
 
 async fn index() -> HttpResponse {
@@ -34,6 +34,7 @@ pub async fn main() -> std::io::Result<()> {
     let ip = Config::instance().server.host.clone();
     let port = Config::instance().server.port;
     let ip_port = format!("{}:{}", ip, port);
+    let thread_numbers = Config::instance().server.thread_numbers;
 
     /*
     req: 表示执行证书请求操作。
@@ -137,7 +138,20 @@ pub async fn main() -> std::io::Result<()> {
                     .service(delete_report)
                     .service(get_user_management_total)
                     .service(get_user_management_list)
-                    .service(ban_user),
+                    .service(ban_user)
+                    .service(update_user_info)
+                    .service(search_user)
+                    .service(get_post_management_total)
+                    .service(get_post_management_list)
+                    .service(search_post)
+                    .service(label_get_post)
+                    .service(title_label_get_post)
+                    .service(
+                        web::scope("/label")
+                        .service(get_label_list)
+                        .service(delete_label)
+                        .service(add_label)
+                    ),
             )
             .service(
                 Files::new("/", "D:/Web_lesson/vue/myprogram-station/dist")
@@ -151,7 +165,7 @@ pub async fn main() -> std::io::Result<()> {
             .route("/editor/", web::get().to(index))
             .default_service(web::get().to(index))
     })
-    .workers(8)
+    .workers(thread_numbers as usize)
     .bind_openssl(ip_port, builder)?
     .run()
     .await

@@ -174,6 +174,8 @@ pub async fn delete_post(
     post_id: web::Json<PostId>,
 ) -> actix_web::Result<HttpResponse> {
     log::debug!("Start delete_post function");
+
+    println!("---- delete post: {:?}", post_id);
     if Token::verif_jwt(req).is_err() {
         return Ok(HttpResponse::BadRequest().body("Failed is verif token"));
     }
@@ -233,6 +235,7 @@ struct SubmitPost {
     content: String,
     user_id: u32,
     user_name: String,
+    label_id: u32,
 }
 
 // 上传一个帖子
@@ -252,6 +255,7 @@ pub async fn submit_post(
         content,
         user_id,
         user_name,
+        label_id,
     } = info.into_inner();
 
     // 写入文件
@@ -271,11 +275,11 @@ pub async fn submit_post(
     let query = format!(
         "
         insert into post
-            (title, release_time, cover_url, content_url, user_id, user_name)
+            (title, release_time, cover_url, content_url, user_id, user_name, label_id)
         VALUES
-            ('{}', NOW(), '{}', '{}', {}, '{}');
+            ('{}', NOW(), '{}', '{}', {}, '{}', {});
     ",
-        title, cover_url, content_url, user_id, user_name
+        title, cover_url, content_url, user_id, user_name, label_id
     );
 
     let my_pool = MysqlPool::instance();
