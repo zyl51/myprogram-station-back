@@ -789,3 +789,38 @@ pub async fn title_label_get_post(
 
     Ok(HttpResponse::Ok().body(post_jsons))
 }
+
+#[derive(Debug, Deserialize)]
+struct UpdatePostInfo {
+    post_id: u32,
+    title: String,
+    label_id: u32,
+}
+
+// 修改用户的帖子信息
+#[post("/post_management/update_post_info")]
+pub async fn management_update_post_info(req: HttpRequest, info: web::Json<UpdatePostInfo>) -> actix_web::Result<HttpResponse> {
+
+    println!("----- management_update_post_info");
+    if Token::verif_jwt(req).is_err() {
+        return Ok(HttpResponse::BadRequest().body("token verify error"));
+    }
+
+    let UpdatePostInfo {
+        post_id,
+        title,
+        label_id
+    } = info.into_inner();
+
+    let my_pool = MysqlPool::instance();
+
+    let query = format!("
+        update post
+        set title = '{}', label_id = {}
+        where id = {};
+    ", title, label_id, post_id);
+
+    my_pool.exec_drop(vec![query], &my_pool.read_write_txopts).unwrap();
+
+    Ok(HttpResponse::Ok().body("Update Success"))
+}

@@ -17,3 +17,4 @@ pub mod report;
 pub mod user_management;
 pub mod post_management;
 pub mod label;
+pub mod label_management;

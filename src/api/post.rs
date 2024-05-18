@@ -8,7 +8,7 @@ use uuid::Uuid;
 
 use crate::{
     common::{config::*, token::*},
-    database::mysql::*,
+    database::{elasticsearch::*, mysql::*},
 };
 
 // const IP_PORT: &str = "127.0.0.1:8082";
@@ -214,6 +214,9 @@ pub async fn delete_post(
 
     let querys = vec![delete_collect, delete_user_comment, delete_post];
 
+    let elasticsearch_pool = ElasticsearchPool::instance();
+    elasticsearch_pool.delete_article(post_id).await?;
+
     match my_pool.exec_drop(querys, &my_pool.read_write_txopts) {
         Ok(_) => {
             log::info!("executing delete_post of my_pool exec_drop successful");
@@ -261,7 +264,7 @@ pub async fn submit_post(
     // 写入文件
     let uu_id = Uuid::new_v4();
     let content_url = format!("./static/content/content-{}.md", uu_id);
-    match fs::write(content_url.clone(), content) {
+    match fs::write(content_url.clone(), content.clone()) {
         Ok(_) => {
             log::info!("submit_post fs::write successful");
         }
@@ -282,6 +285,7 @@ pub async fn submit_post(
         title, cover_url, content_url, user_id, user_name, label_id
     );
 
+    // 将数据插入 mysql 数据库
     let my_pool = MysqlPool::instance();
     let post_id = match my_pool.query_drop(&query, &my_pool.read_write_txopts) {
         Ok(ok) => {
@@ -294,6 +298,10 @@ pub async fn submit_post(
                 .body(serde_json::to_string("服务器繁忙").unwrap()));
         }
     };
+
+    // 将数据插入 ES
+    let elasticsearch_pool = ElasticsearchPool::instance();
+    elasticsearch_pool.add_or_update_article(post_id, label_id, title, content).await?;
 
     log::debug!("End submit_post function");
     Ok(HttpResponse::Ok().body(serde_json::to_string(&post_id).unwrap()))

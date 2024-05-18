@@ -12,6 +12,7 @@ actix-multipart = "0.6.1"
 actix-rt = "2.9.0"
 actix-web = { version = "4.5.1", features = ["openssl"] }
 chrono = "0.4.35"
+elasticsearch = "8.5.0-alpha.1"
 futures = "0.3.30"
 jsonwebtoken = "9.3.0"
 lazy_static = "1.4.0"

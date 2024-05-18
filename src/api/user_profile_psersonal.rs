@@ -197,3 +197,56 @@ pub async fn update_userprofile_avatar_url(
     log::debug!("End update_userprofile_avatar_url function");
     Ok(HttpResponse::Ok().body(serde_json::to_string("修改成功").unwrap()))
 }
+
+
+#[derive(Debug, Serialize, Deserialize)]
+struct UpdatePassword {
+    user_id: u32,
+    old_password: String,
+    new_password: String,
+}
+
+// 修改密码
+#[post("/userprofile/update_password")]
+pub async fn update_userprofile_password(req: HttpRequest, info: web::Json<UpdatePassword>) -> actix_web::Result<HttpResponse> {
+
+    println!("--- update_userprofile_password");
+    if Token::verif_jwt(req).is_err() {
+        return Ok(HttpResponse::BadRequest().body(
+            serde_json::to_string("verify token failed").unwrap()
+        ));
+    }
+
+    let UpdatePassword {
+        user_id,
+        old_password,
+        new_password,
+    } = info.into_inner();
+
+    let my_pool = MysqlPool::instance();
+    let query = format!("
+        select password
+        from login
+        where user_id = {};
+    ", user_id);
+
+    let password: Vec<String> = my_pool.exec(query, &my_pool.read_only_txopts)
+        .unwrap();
+
+    if password[0] != old_password {
+        return Ok(HttpResponse::BadRequest().body(
+            serde_json::to_string("旧密码错误").unwrap()
+        ));
+    }
+
+    let query = format!("
+        update login
+        set password = '{}'
+        where user_id = {};
+    ", new_password, user_id);
+
+    my_pool.exec_drop(vec![query], &my_pool.read_write_txopts).unwrap();
+
+
+    Ok(HttpResponse::Ok().body(serde_json::to_string("修改成功").unwrap()))
+}

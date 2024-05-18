@@ -26,12 +26,20 @@ pub struct EmailConfig {
     pub gamil: String,
 }
 
+#[derive(Debug)]
+pub struct ElasticsearchConfig {
+    pub host: String,
+    pub port: u32,
+    pub index: String,
+}
+
 // 定义 Config 结构体
 #[derive(Debug)]
 pub struct Config {
     pub server: ServerConfig,
     pub mysql: MysqlConfig,
     pub email: EmailConfig,
+    pub elasticsearch: ElasticsearchConfig,
 }
 
 impl Config {
@@ -89,11 +97,24 @@ impl Config {
             gamil: config["email"]["gmail"].as_str().unwrap_or("").to_string(),
         };
 
+        let elasticsearch_config = ElasticsearchConfig {
+            host: config["elasticsearch"]["host"]
+                .as_str()
+                .unwrap_or("localhost")
+                .to_string(),
+            port: config["elasticsearch"]["port"].as_integer().unwrap_or(3306) as u32,
+            index: config["elasticsearch"]["index"]
+                .as_str()
+                .unwrap()
+                .to_string(),
+        };
+
         log::info!("End to get project configuration");
         Config {
             server: server_config,
             mysql: mysql_config,
             email: email_config,
+            elasticsearch: elasticsearch_config,
         }
     }
 

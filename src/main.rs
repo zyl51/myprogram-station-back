@@ -15,6 +15,7 @@ use api::{
     follow::*, login::*, post::*, recommend::*, register::*, search::*, user::*, user_profile::*,
     user_stats::*, user_comment::*, like_collect::*, markdown::*, token::*, forgot_password::*,
     user_profile_psersonal::*, report::*, user_management::*, post_management::*, label::*,
+    label_management::*,
 };
 
 async fn index() -> HttpResponse {
@@ -119,6 +120,7 @@ pub async fn main() -> std::io::Result<()> {
                     .service(update_userprofile_username)
                     .service(update_userprofile_avatar)
                     .service(update_userprofile_avatar_url)
+                    .service(update_userprofile_password)
                     .service(add_remove_follow)
                     .service(get_user_comment)
                     .service(submit_comment)
@@ -143,6 +145,7 @@ pub async fn main() -> std::io::Result<()> {
                     .service(search_user)
                     .service(get_post_management_total)
                     .service(get_post_management_list)
+                    .service(management_update_post_info)
                     .service(search_post)
                     .service(label_get_post)
                     .service(title_label_get_post)
@@ -151,7 +154,12 @@ pub async fn main() -> std::io::Result<()> {
                         .service(get_label_list)
                         .service(delete_label)
                         .service(add_label)
-                    ),
+                    )
+                    .service(
+                        web::scope("/management_label")
+                        .service(managemrnt_add_label)
+                        .service(managemrnt_delete_label)
+                    )
             )
             .service(
                 Files::new("/", "D:/Web_lesson/vue/myprogram-station/dist")
