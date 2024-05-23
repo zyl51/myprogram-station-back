@@ -49,7 +49,8 @@ pub async fn get_follow_relationships(
         }
     };
 
-    // println!("{}", numbers.len());
+    println!("follower_id: {}, following_id: {}, numbers[0].0: {}", 
+        follower_id, following_id, numbers[0].0);
     if numbers[0].0 == 0 {
         let flag = false;
         return Ok(HttpResponse::Ok().body(serde_json::to_string(&flag).unwrap()));
@@ -125,7 +126,7 @@ struct FollowPost {
     page: u32,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 struct MyPost {
     pub id: u32,
     pub title: String,
@@ -208,6 +209,10 @@ pub async fn get_follow_posts_list(
             ));
         }
     };
+
+    if posts.len() == 0 {
+        return Ok(HttpResponse::Ok().body(serde_json::to_string(&posts).unwrap()));
+    }
 
     // 将用户的 id 提取出来并且去重
     let user_ids: HashSet<u32> = posts.iter().map(|post| post.user_id).collect();
